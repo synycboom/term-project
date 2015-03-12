@@ -1,4 +1,7 @@
 TermProject::Application.routes.draw do
+  root to: 'exam_management#index'
+  get "exam_management/index"
+  get 'exam_management/about', :to => 'exam_management#about' , :as => 'about'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
