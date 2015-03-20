@@ -1,0 +1,16 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>Add New Location</h1>
+        <%= form_tag add_new_location_path do %>
+          <%= label :location, :room_no, 'Room number' %>
+          <%= text_field :location, :room_no %>
+          <%= label :location, :building, 'Building' %>
+          <%= text_field :location, :building %>
+          <%= label :location, :total_table, 'Total Table' %>
+          <%= text_field :location, :total_table %>
+          <%= submit_tag 'Save Changes' %>
+        <% end %>
+    </body>
+</html>

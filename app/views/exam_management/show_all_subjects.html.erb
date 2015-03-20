@@ -1,0 +1,38 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <div>EXAM MANAGEMENT</div>
+        <div>Show All Subjects</div>
+        <table>
+            <thead>
+                <th>Subject_id</th>
+                <th>Subject_name</th>
+                <th>Section</th>
+                <th>Exam_date</th>
+                <th>Exam_time</th>
+            </thead>
+            <tbody>
+                <% @subjects.each do |subject| %>
+                <tr>
+                    <td>
+                        <%= subject.s_id %>
+                    </td>
+                    <td>
+                        <%= subject.s_name %>
+                    </td>
+                    <td>
+                        <%= subject.section %>
+                    </td>
+                    <td>
+                        <%= subject.date %>
+                    </td>
+                    <td>
+                        <%= subject.time %>
+                    </td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </body>
+</html>

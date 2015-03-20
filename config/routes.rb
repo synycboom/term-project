@@ -2,6 +2,16 @@ TermProject::Application.routes.draw do
   root to: 'exam_management#index'
   get "exam_management/index"
   get 'exam_management/about', :to => 'exam_management#about' , :as => 'about'
+  get 'exam_management/show_managed_locas', :to => 'exam_management#show_managed_rooms', :as => 'show_managed_rooms'
+  get 'exam_management/show_all_subjects', :to => 'exam_management#show_all_subjects' , :as => 'show_all_subjects'
+  get 'exam_management/show_all_locations', :to => 'exam_management#show_all_locations' , :as => 'show_all_locations'
+  
+  get 'exam_management/add_location_form', :to => 'exam_management#add_location_form' , :as => 'add_location_form'
+  post 'exam_management/add_new_location', :to => 'exam_management#add_new_location' , :as => 'add_new_location'
+  
+  
+  
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
