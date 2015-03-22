@@ -7,7 +7,7 @@
         <h3>Show All Locations</h3>
         </div>
         <% if flash[:notice] %>
-        <label class="success-input">Input with success</label>
+        <label class="success-input"><%= flash[:notice] %></label>
         <% end %>
         <table class="table table-bordered">
             <thead>
