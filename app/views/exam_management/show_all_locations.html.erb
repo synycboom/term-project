@@ -2,12 +2,14 @@
     <head>
     </head>
     <body>
-        <div>EXAM MANAGEMENT</div>
-        <div>Show All Locations</div>
+        <p class="bg-primary">EXAM MANAGEMENT</p>
+        <div class="page-header">
+        <h3>Show All Locations</h3>
+        </div>
         <% if flash[:notice] %>
-        <div class="notice"><%= flash[:notice] %></div>
+        <label class="success-input">Input with success</label>
         <% end %>
-        <table>
+        <table class="table table-bordered">
             <thead>
                 <th>Room_number</th>
                 <th>Total_table</th>

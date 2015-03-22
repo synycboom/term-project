@@ -2,15 +2,23 @@
     <head>
     </head>
     <body>
-        <h1>Add New Location</h1>
+        <p class="bg-primary">EXAM MANAGEMENT</p>
+        <div class="page-header">
+        <h3>Add New Location</h3>
+        </div>
+        <div class="container">
         <%= form_tag add_new_location_path do %>
+          <div class="form-group">
           <%= label :location, :room_no, 'Room number' %>
-          <%= text_field :location, :room_no %>
+          <%= text_field :location, :room_no, :class => 'form-control',:placeholder => "ex. engr304" %>
           <%= label :location, :building, 'Building' %>
-          <%= text_field :location, :building %>
+          <%= text_field :location, :building, :class => 'form-control', :placeholder => "ex. engr1" %>
           <%= label :location, :total_table, 'Total Table' %>
-          <%= text_field :location, :total_table %>
-          <%= submit_tag 'Save Changes' %>
+          <%= text_field :location, :total_table, :class => 'form-control', :placeholder => "ex. 32" %>
+          <br/>
+          <%= submit_tag 'Save Changes', :class => 'btn btn-success' %>
+          </div>
         <% end %>
+        </div>
     </body>
 </html>
