@@ -9,9 +9,9 @@ Scenario: Add a new location
   And I follow "Go to show all locations"
   Then I follow "add new location"
   When I fill in the following:
-     | Room number      | 502   |
-     | Building     | sc    |
-     | Total Table  | 60    |
+     | location[room_no]  | 502   |
+     | location[building]     | sc    |
+     | location[total_table]  | 60    |
   And I press "Save Location"
   Then I should see "502 was successfully created."
 
@@ -19,19 +19,16 @@ Scenario: If i didn't full filling the form field i can't add a new location(sad
   Given I am on the home page
   And I follow "Go to show all locations"
   Then I follow "add new location"
-  When I fill in the following:
-     | Room number      | 502   |
-      | Building     | sc    |
   And I press "Save Location"
-  Then I should see "Total table required"
+  Then I should see "Total table: can't be blank"
   
 Scenario: Total table field must be number(validate)
   Given I am on the home page
   And I follow "Go to show all locations"
   Then I follow "add new location"
   When I fill in the following:
-     | Room number      | 502   |
-     | Building     | sc    |
-     | Total Table  | abc    |
+     | location[room_no]      | 502   |
+     | location[building]     | sc    |
+     | location[total_table]  | abc    |
   And I press "Save Location"
-  Then I should see "Total table must be number" 
+  Then I should see "Total table: is not a number" 

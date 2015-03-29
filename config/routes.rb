@@ -9,6 +9,11 @@ TermProject::Application.routes.draw do
   get 'exam_management/add_location_form', :to => 'exam_management#add_location_form' , :as => 'add_location_form'
   post 'exam_management/add_new_location', :to => 'exam_management#add_new_location' , :as => 'add_new_location'
   
+  get 'exam_management/add_subject_form', :to => 'exam_management#add_subject_form' , :as => 'add_subject_form'
+  post 'exam_management/add_new_subject', :to => 'exam_management#add_new_subject' , :as => 'add_new_subject'
+  
+  get 'exam_management/show_subject_detail', :to => 'exam_management#show_subject_detail' , :as => 'show_subject_detail'
+  get 'exam_management/show_location_detail', :to => 'exam_management#show_location_detail' , :as => 'show_location_detail'
   
   
   

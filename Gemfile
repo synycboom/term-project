@@ -13,7 +13,7 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'simplecov'
-
+  gem 'mocha', '0.10.0', :require => false
 end
 
 group :production do

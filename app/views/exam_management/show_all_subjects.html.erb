@@ -6,6 +6,9 @@
         <div class="page-header">
         <h3>Show All Subjects</h3>
         </div>
+        <% if flash[:notice] %>
+        <label class="success-input"><%= flash[:notice] %></label>
+        <% end %>
         <table class="table table-bordered">
             <thead>
                 <th>Subject ID</th>
@@ -13,6 +16,7 @@
                 <th>Section</th>
                 <th>Exam Date</th>
                 <th>Exam Time</th>
+                <th>Details</th>
             </thead>
             <tbody>
                 <% @subjects.each do |subject| %>
@@ -32,9 +36,14 @@
                     <td>
                         <%= subject.time %>
                     </td>
+                    <td>
+                        <%= link_to 'Details', show_subject_detail_path(:dsub => subject) %>
+                    </td>
                 </tr>
                 <% end %>
             </tbody>
         </table>
+        <h1><%= link_to 'add new subject', add_subject_form_path %></h1>
+        <button onclick="window.location.href='index.html'">Back</button>
     </body>
 </html>

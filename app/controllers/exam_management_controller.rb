@@ -30,8 +30,33 @@ class ExamManagementController < ApplicationController
       flash[:notice] = "#{@location.room_no} was successfully created."
       redirect_to show_all_locations_path
     else
-      #****you are here****
       render :add_location_form
     end
   end
+  
+  def add_subject_form
+    @subject = Subject.new
+  end
+  
+  def add_new_subject
+    @subject = Subject.create(params[:subject])
+    
+    if @subject.save and @subject.valid?
+      flash[:notice] = "#{@subject.s_id} was successfully created."
+      redirect_to show_all_subjects_path
+    else
+      render :add_subject_form
+    end
+  end
+  
+  def show_subject_detail
+    @subjects = Subject.all
+    @sub = Subject.find(params[:dsub])
+  end
+  
+  def show_location_detail
+    @locations = Location.all
+    @room = Location.find(params[:dlocation])
+  end
+  
 end

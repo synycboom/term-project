@@ -14,6 +14,7 @@
                 <th>Room Number</th>
                 <th>Total Table</th>
                 <th>Building</th>
+                <th>Details</th>
             </thead>
             <tbody>
                 <% @locations.each do |location| %>
@@ -27,10 +28,14 @@
                     <td>
                         <%= location.building %>
                     </td>
+                    <td>
+                        <%= link_to 'Details', show_location_detail_path(:dlocation => location) %>
+                    </td>
                 </tr>
                 <% end %>
             </tbody>
         </table>
         <h1><%= link_to 'add new location', add_location_form_path %></h1>
+        <button onclick="window.location.href='index.html'">Back</button>
     </body>
 </html>
