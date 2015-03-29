@@ -7,18 +7,30 @@
         <h3>Add New Location</h3>
         </div>
         <div class="container">
-        <%= form_tag add_new_location_path do %>
+        <%= @errors %>
+        <%= form_for @location , url: add_new_location_path do |f| %>
+          
+          <% unless @location.errors.empty? %>
+              <% @location.errors.full_messages.each do |error| %>
+              <%= error %>
+              <% end%>
+          <%end%>
           <div class="form-group">
-          <%= label :location, :room_no, 'Room number' %>
-          <%= text_field :location, :room_no, :class => 'form-control',:placeholder => "ex. engr304" %>
-          <%= label :location, :building, 'Building' %>
-          <%= text_field :location, :building, :class => 'form-control', :placeholder => "ex. engr1" %>
-          <%= label :location, :total_table, 'Total Table' %>
-          <%= text_field :location, :total_table, :class => 'form-control', :placeholder => "ex. 32" %>
-          <br/>
-          <%= submit_tag 'Save Changes', :class => 'btn btn-success' %>
+          <%= f.label :room_no %>:
+          <%= f.text_field :room_no, :class => 'form-control',:placeholder => "ex. engr304"  %><br />
+          
+
+          <%= f.label :building %>:
+          <%= f.text_field :building , :class => 'form-control', :placeholder => "ex. engr1" %><br />
+
+
+          <%= f.label :total_table %>:
+          <%= f.text_field :total_table , :class => 'form-control', :placeholder => "ex. 32" %><br />
+        
+          <%= f.submit 'Save Location', :class => 'btn btn-success' %>
           </div>
         <% end %>
+        
         </div>
     </body>
 </html>

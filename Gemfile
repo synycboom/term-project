@@ -13,6 +13,7 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'simplecov'
+
 end
 
 group :production do
@@ -29,3 +30,4 @@ end
 gem 'jquery-rails'
 gem 'haml'
 gem 'haml-rails'
+gem "dynamic_form"

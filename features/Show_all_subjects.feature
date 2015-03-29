@@ -18,3 +18,11 @@ Scenario: Show all available locations
   And I should see "680002"
   And I should see "14:00"
   And I should see "1/Jan/2558"
+
+Scenario: Show all available locations
+  Given I follow "Go to show all subjects"
+  Then I should not see "cn202"
+  And I should not see "Data structure 1"
+  And I should not see "680002"
+  And I should not see "14:00"
+  And I should not see "1/Jan/2558"

@@ -18,3 +18,9 @@ Scenario: Show all available locations
   Then I should see "418"
   And I should see "23"
   And I should see "Engineering"
+  
+Scenario: Show all available locations(sad path)
+  Given I follow "Go to show all locations"
+  Then I should not see "418"
+  And I should not see "23"
+  And I should not see "Engineering"
