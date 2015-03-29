@@ -30759,3 +30759,15 @@ Connecting to database specified by database.yml
   [1m[36m (10.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150320082603')[0m
   [1m[35m (7.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150320080216')
   [1m[36m (9.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150320075259')[0m
+Connecting to database specified by database.yml
+  [1m[36m (7.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.3ms)[0m  select sqlite_version(*)
+  [1m[36m (19.1ms)[0m  [1mCREATE TABLE "locations" ("room_no" varchar(255), "total_table" decimal, "building" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (22.0ms)[0m  CREATE TABLE "manages" ("room_no" varchar(255), "s_id" varchar(255), "conflict" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (46.2ms)[0m  [1mCREATE TABLE "subjects" ("s_id" varchar(255), "s_name" varchar(255), "section" varchar(255), "date" varchar(255), "time" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (12.0ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (13.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (17.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150320082603')[0m
+  [1m[35m (11.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150320080216')
+  [1m[36m (11.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150320075259')[0m

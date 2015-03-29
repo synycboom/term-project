@@ -20,7 +20,7 @@ Scenario: If i didn't full filling the form field i can't add a new subject(sad 
   Given I am on the home page
   And I follow "Go to show all subjects"
   Then I follow "add new subject"
-  And I press "Save Location"
+  And I press "Save Subject"
   Then I should see "Subject id: can't be blank"
   And I should see "Subject name: can't be blank"
   And I should see "Section: can't be blank"
