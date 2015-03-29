@@ -10,21 +10,28 @@
         <%= @errors %>
         <%= form_for @location , url: add_new_location_path do |f| %>
           
-          <% unless @location.errors.empty? %>
-              <% @location.errors.full_messages.each do |error| %>
-              <%= error %>
-              <% end%>
-          <%end%>
+       
           <div class="form-group">
-          <%= f.label :room_no %>:
+         
+          <% unless @location.errors.empty? %>
+            <%= f.label :room_no, "Room no: #{@location.errors[:room_no].first}" %>
+          <%else%>
+           <%= f.label :room_no %>:
+          <%end%>
           <%= f.text_field :room_no, :class => 'form-control',:placeholder => "ex. engr304"  %><br />
           
-
-          <%= f.label :building %>:
+          <% unless @location.errors.empty? %>
+            <%= f.label :building, "Building: #{@location.errors[:building].first}" %>
+          <%else%>
+           <%= f.label :building %>:
+          <%end%>
           <%= f.text_field :building , :class => 'form-control', :placeholder => "ex. engr1" %><br />
-
-
-          <%= f.label :total_table %>:
+          
+          <% unless @location.errors.empty? %>
+            <%= f.label :total_table, "Total table: #{@location.errors[:total_table].first}" %>
+          <%else%>
+           <%= f.label :total_table %>:
+          <%end%>
           <%= f.text_field :total_table , :class => 'form-control', :placeholder => "ex. 32" %><br />
         
           <%= f.submit 'Save Location', :class => 'btn btn-success' %>

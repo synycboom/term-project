@@ -24,9 +24,9 @@ class ExamManagementController < ApplicationController
   end
   
   def add_new_location
-    @location = Location.create!(params[:location])
+    @location = Location.create(params[:location])
     
-    if @location.save
+    if @location.save and @location.valid?
       flash[:notice] = "#{@location.room_no} was successfully created."
       redirect_to show_all_locations_path
     else
