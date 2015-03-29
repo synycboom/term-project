@@ -29,6 +29,14 @@ RSpec.describe ExamManagementController, :type => :controller do
     end
   end
   
+  # describe "show subject detail" do
+  #   let(:subject) { Subject.new(s_id:"cn201",s_name:"OOP",section:"570001",time:"12:00",date:"1/Jan/2558") }
+  #   it "return http success" do
+  #     visit show_subject_detail(subject)
+  #     expect(response).to have_http_status(:success)
+  #   end
+  # end
+  
   describe "#add_new_location" do
     it 'should render the add_location_form template' do
 			get :add_location_form
@@ -57,6 +65,19 @@ RSpec.describe ExamManagementController, :type => :controller do
       post :add_new_location, {:room_no => "",:building => "Engineering",:total_table => "aaa"}
       flash[:notice].should be_nil
       response.should render_template 'add_location_form'
+    end
+  end
+  
+  describe "add_new_subject (sad path)" do
+    it 'should render the add_suject_form template' do
+			get :add_subject_form
+			response.should render_template 'add_subject_form'
+		end
+		it 'should create a new subject' do
+      post :add_new_subject, {:s_id => 'cn201',:s_name => 'OOP',
+      :section => '570001', :time => '', :date => ''}
+      flash[:notice].should be_nil
+      response.should render_template 'add_subject_form'
     end
   end
   
