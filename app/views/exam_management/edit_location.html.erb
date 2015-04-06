@@ -1,0 +1,36 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <p class="bg-primary">EXAM MANAGEMENT</p>
+        <div class="page-header">
+        <h3>Edit Room:  <%= @location.room_no %></h3>
+        </div>
+        <div class="container">
+        <%= @errors %>
+        <%= form_for @location , url: update_l_path(:room_no => @location) do |f| %>
+          
+       
+          <div class="form-group">
+          
+          <% unless @location.errors.empty? %>
+            <%= f.label :building, "Building: #{@location.errors[:building].first}" %>
+          <%else%>
+           <%= f.label :building %>:
+          <%end%>
+          <%= f.text_field :building , :class => 'form-control', :placeholder => "ex. engr1" %><br />
+          
+          <% unless @location.errors.empty? %>
+            <%= f.label :total_table, "Total table: #{@location.errors[:total_table].first}" %>
+          <%else%>
+           <%= f.label :total_table %>:
+          <%end%>
+          <%= f.text_field :total_table , :class => 'form-control', :placeholder => "ex. 32" %><br />
+        
+          <%= f.submit 'Update', :class => 'btn btn-success' %>
+          </div>
+        <% end %>
+        
+        </div>
+    </body>
+</html>

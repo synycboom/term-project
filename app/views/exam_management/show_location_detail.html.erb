@@ -10,8 +10,8 @@
             <li>Building: <%= @room.building %></li>
             <li>Total_table: <%= @room.total_table %></li>
         </ul>
-        <%= link_to "Edit" %>&nbsp&nbsp
-        <%= link_to "Delete" %><br><br><br>
-        <button onclick="window.location.href='show_all_locations.html'">Back</button>
+        <%= link_to 'Edit', edit_location_path(:ulocation => @room) %>&nbsp&nbsp
+        <%= link_to 'Delete', destroy_l_path(:dlocation => @room), :confirm => 'Are you sure?' %><br><br><br>
+        <button onclick="window.location.href='show_all_locations.html'" class='btn btn-info'>Back</button>
     </body>
 </html>

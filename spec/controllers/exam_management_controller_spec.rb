@@ -80,7 +80,5 @@ RSpec.describe ExamManagementController, :type => :controller do
       response.should render_template 'add_subject_form'
     end
   end
-  
-  
 
 end

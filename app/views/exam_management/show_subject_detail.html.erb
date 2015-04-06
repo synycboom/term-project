@@ -4,16 +4,16 @@
     <body>
         <p class="bg-primary">EXAM MANAGEMENT</p>
         <div class="page-header">
-                <h3>Subject: <%= @sub.s_name %></h3>
+                <h3>Subject: <%= @subject.s_name %></h3>
         </div>
         <ul>
-            <li>ID: <%= @sub.s_id %></li>
-            <li>Section: <%= @sub.section %></li>
-            <li>Date: <%= @sub.date %></li>
-            <li>Time: <%= @sub.time %></li>
+            <li>ID: <%= @subject.s_id %></li>
+            <li>Section: <%= @subject.section %></li>
+            <li>Date: <%= @subject.date %></li>
+            <li>Time: <%= @subject.time %></li>
         </ul>
-        <%= link_to "Edit" %>&nbsp&nbsp
-        <%= link_to "Delete" %><br><br><br>
-        <button onclick="window.location.href='show_all_subjects.html'">Back</button>
+        <%= link_to 'Edit', edit_subject_path(:usub => @subject) %>&nbsp&nbsp
+        <%= link_to 'Delete', destroy_s_path(:dsub => @subject), :confirm => 'Are you sure?' %><br><br><br>
+        <button onclick="window.location.href='show_all_subjects.html'" class='btn btn-info'>Back</button>
     </body>
 </html>

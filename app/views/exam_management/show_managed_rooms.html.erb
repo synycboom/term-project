@@ -1,0 +1,70 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <p class="bg-primary">EXAM MANAGEMENT</p>
+        <div class="page-header">
+        <h3>Show Managed Room</h3>
+        </div>
+        <% if flash[:notice] %>
+        <label class="success-input"><%= flash[:notice] %></label>
+        <% end %>
+        
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                <% @subjects.each do |subject| %>
+                
+                    <td>
+                        <ins><b><%= subject.s_id %></b></ins><br>
+                        <%= subject.section %><br>
+                        <%= subject.date %><br>
+                        <%= subject.time %><br>
+                    </td>
+                <% end %>
+                </tr>
+            </tbody>
+        </table>
+        <br><br>
+<!--        <h3 align='center'>Show All Subject</h3>
+        <table class="table table-bordered">
+            <thead>
+                <th>Subject ID</th>
+                <th>Subject Name</th>
+                <th>Section</th>
+                <th>Exam Date</th>
+                <th>Exam Time</th>
+            </thead>
+            <tbody>
+                <% @subjects.each do |subject| %>
+                <tr>
+                    <td><%= subject.s_id %></td>
+                    <td><%= subject.s_name %></td>
+                    <td><%= subject.section %></td>
+                    <td><%= subject.date %></td>
+                    <td><%= subject.time %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+        <h3 align='center'>Show All Location</h3>
+        <table class="table table-bordered">
+            <thead>
+                <th>Room Number</th>
+                <th>Total Table</th>
+                <th>Building</th>
+            </thead>
+            <tbody>
+                <% @locations.each do |location| %>
+                <tr>
+                    <td><%= location.room_no %></td>
+                    <td><%= location.total_table %></td>
+                    <td><%= location.building %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+-->        
+        <br><button type="button" class="btn btn-default btn-lg btn-block" onclick="window.location.href='index.html'">Back</button>
+    </body>
+</html>

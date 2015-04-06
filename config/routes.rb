@@ -2,7 +2,7 @@ TermProject::Application.routes.draw do
   root to: 'exam_management#index'
   get "exam_management/index"
   get 'exam_management/about', :to => 'exam_management#about' , :as => 'about'
-  get 'exam_management/show_managed_locas', :to => 'exam_management#show_managed_rooms', :as => 'show_managed_rooms'
+  get 'exam_management/show_managed_rooms', :to => 'exam_management#show_managed_rooms', :as => 'show_managed_rooms'
   get 'exam_management/show_all_subjects', :to => 'exam_management#show_all_subjects' , :as => 'show_all_subjects'
   get 'exam_management/show_all_locations', :to => 'exam_management#show_all_locations' , :as => 'show_all_locations'
   
@@ -15,7 +15,17 @@ TermProject::Application.routes.draw do
   get 'exam_management/show_subject_detail', :to => 'exam_management#show_subject_detail' , :as => 'show_subject_detail'
   get 'exam_management/show_location_detail', :to => 'exam_management#show_location_detail' , :as => 'show_location_detail'
   
+  get 'exam_management/edit_subject', :to => 'exam_management#edit_subject' , :as => 'edit_subject'
+  put 'exam_management/update_s', :to => 'exam_management#update_s' , :as => 'update_s'
   
+  get 'exam_management/edit_location', :to => 'exam_management#edit_location' , :as => 'edit_location'
+  put 'exam_management/update_l', :to => 'exam_management#update_l' , :as => 'update_l'
+
+  get 'exam_management/destroy_s', :to => 'exam_management#destroy_s' , :as => 'destroy_s'
+  get 'exam_management/destroy_l', :to => 'exam_management#destroy_l' , :as => 'destroy_l'
+  
+  get 'exam_management/show_search_location', :to => 'exam_management#show_search_location' , :as => 'show_search_location'
+  get 'exam_management/show_search_subject', :to => 'exam_management#show_search_subject' , :as => 'show_search_subject'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,55 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <p class="bg-primary">EXAM MANAGEMENT</p>
+        <div class="page-header">
+        <h3>Search Location Result</h3>
+        </div>
+        
+        <%= form_tag("show_search_location", method: "get",class: 'form-inline') do %>
+              <%= label_tag(:q, "Search for:") %>
+              <%= text_field_tag 'search_value',nil,class: 'form-control' %>
+              <%= select_tag(:search_by,options_for_select([['Room Number', 'room_no'], ['Total table', 'total_table'] ,['Building','building']]), { :class => 'form-control' }) %>
+              <%= submit_tag "Search",class: 'btn btn-danger' %>
+        <% end %>
+        <br>
+        
+        <% if flash[:notice] %>
+        <label class="success-input"><%= flash[:notice] %></label>
+        <% end %>
+        <table class="table table-bordered">
+            <thead>
+                <th>Room Number</th>
+                <th>Total Table</th>
+                <th>Building</th>
+                <th>Details</th>
+            </thead>
+            <tbody>
+                <% @search_location.each do |location| %>
+                <tr>
+                    <td>
+                        <%= location.room_no %>
+                    </td>
+                    <td>
+                        <%= location.total_table %>
+                    </td>
+                    <td>
+                        <%= location.building %>
+                    </td>
+                    <td>
+                        <%= link_to 'Details', show_location_detail_path(:dlocation => location) %>
+                    </td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-default btn-lg">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          <%= link_to 'add new location', add_location_form_path %>
+        </button>
+        <br><br>
+        <button onclick="window.location.href='index.html'" class='btn btn-info'>Back</button>
+        <br><br>
+    </body>
+</html>
