@@ -11,7 +11,7 @@ RSpec.describe ExamManagementController, :type => :controller do
   end
   
   ######################################################################
-  #               show  all locations function test                    #
+  #               show  all locations function                         #
   ######################################################################
   
   describe "show_all_locations" do
@@ -29,7 +29,7 @@ RSpec.describe ExamManagementController, :type => :controller do
   end
   
   ######################################################################
-  #               show  all subjects function test                     #
+  #               show  all subjects function                          #
   ######################################################################
   
   describe "show_all_subjects" do
@@ -49,7 +49,7 @@ RSpec.describe ExamManagementController, :type => :controller do
   end
   
   ######################################################################
-  #               show subject detail function test                    #
+  #               show subject detail function                         #
   ######################################################################
   
   describe "show subject detail" do
@@ -61,7 +61,7 @@ RSpec.describe ExamManagementController, :type => :controller do
   end
   
   ######################################################################
-  #               show location detail function test                   #
+  #               show location detail function                        #
   ######################################################################
   
   describe "show location detail" do
@@ -74,7 +74,7 @@ RSpec.describe ExamManagementController, :type => :controller do
   end
   
   ######################################################################
-  #               add new location function test                       #
+  #               add new location function                            #
   ######################################################################
   
   describe "add_new_location" do
@@ -108,7 +108,7 @@ RSpec.describe ExamManagementController, :type => :controller do
   end
   
   ######################################################################
-  #               add new subject function test                        #
+  #               add new subject function                             #
   ######################################################################
   
   describe "add_new_subject (happy path)" do
@@ -143,7 +143,7 @@ RSpec.describe ExamManagementController, :type => :controller do
   end
   
   ######################################################################
-  #               update subject  function test                        #
+  #               update subject  function                             #
   ######################################################################
   
   describe "update subject (happy path)"do
@@ -171,7 +171,7 @@ RSpec.describe ExamManagementController, :type => :controller do
   end
   
   ######################################################################
-  #               update location function test                        #
+  #               update location function                             #
   ######################################################################
   describe "update location (happy path)"do
     it 'should update subject' do
@@ -196,7 +196,7 @@ RSpec.describe ExamManagementController, :type => :controller do
   end
   
   ######################################################################
-  #                        delete function test                        #
+  #                        delete function                             #
   ######################################################################
   
   describe "delete subject " do
@@ -221,7 +221,7 @@ RSpec.describe ExamManagementController, :type => :controller do
   
   
   ######################################################################
-  #                        search function test                        #
+  #                        search function                             #
   ######################################################################
 
   describe 'search subject' do
