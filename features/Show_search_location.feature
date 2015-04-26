@@ -31,3 +31,5 @@ Scenario: Show search result location(sad path)
   And I fill in "search_value" with "LC"
   Then I press "Search"
   And I should see "No Data!!!"
+  
+  

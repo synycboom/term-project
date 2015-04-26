@@ -10,7 +10,7 @@
         <%= form_tag("show_search_subject", method: "get",class: 'form-inline') do %>
               <%= label_tag(:q, "Search for:") %>
               <%= text_field_tag 'search_value',nil,class: 'form-control' %>
-              <%= select_tag(:search_by,options_for_select([['Subject ID', 's_id'], ['Subject Name', 's_name'] ,['Section','section'],['Exam Date','date'],['Exam Time','time']]), { :class => 'form-control' }) %>
+              <%= select_tag(:search_by,options_for_select([['Subject ID', 's_id'], ['Subject Name', 's_name'] ,['Section','section'],['Exam duration','duration']]), { :class => 'form-control' }) %>
               <%= submit_tag "Search",class: 'btn btn-danger' %>
         <% end %>
         <br>
@@ -23,8 +23,7 @@
                 <th>Subject ID</th>
                 <th>Subject Name</th>
                 <th>Section</th>
-                <th>Exam Date</th>
-                <th>Exam Time</th>
+                <th>Exam Duration</th>
                 <th>Details</th>
             </thead>
             <tbody>
@@ -40,10 +39,7 @@
                         <%= subject.section %>
                     </td>
                     <td>
-                        <%= subject.date %>
-                    </td>
-                    <td>
-                        <%= subject.time %>
+                        <%= subject.duration %>
                     </td>
                     <td>
                         <%= link_to 'Details', show_subject_detail_path(:dsub => subject) %>

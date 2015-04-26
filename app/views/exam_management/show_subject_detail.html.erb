@@ -9,8 +9,7 @@
         <ul>
             <li>ID: <%= @subject.s_id %></li>
             <li>Section: <%= @subject.section %></li>
-            <li>Date: <%= @subject.date %></li>
-            <li>Time: <%= @subject.time %></li>
+            <li>Exam Duration: <%= @subject.duration %></li>
         </ul>
         <%= link_to 'Edit', edit_subject_path(:usub => @subject) %>&nbsp&nbsp
         <%= link_to 'Delete', destroy_s_path(:dsub => @subject), :confirm => 'Are you sure?' %><br><br><br>

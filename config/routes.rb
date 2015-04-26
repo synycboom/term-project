@@ -27,6 +27,7 @@ TermProject::Application.routes.draw do
   get 'exam_management/show_search_location', :to => 'exam_management#show_search_location' , :as => 'show_search_location'
   get 'exam_management/show_search_subject', :to => 'exam_management#show_search_subject' , :as => 'show_search_subject'
   
+  get 'exam_management/generate_schedule_form', :to => 'exam_management#generate_schedule_form' , :as => 'generate_schedule_form'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -26,3 +26,7 @@ url('../assets/glyphicons-halflingsregular.svg#glyphicons_halflingsregular') for
 .success-input {
     color: green;
 }
+
+.invalid-input {
+    color: red;
+}

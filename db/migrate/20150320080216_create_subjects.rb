@@ -4,8 +4,7 @@ class CreateSubjects < ActiveRecord::Migration
       t.string :s_id
       t.string :s_name
       t.string :section
-      t.string :date
-      t.string :time
+      t.string :duration
       t.timestamps
     end
   end

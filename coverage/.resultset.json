@@ -152,6 +152,7 @@
       ],
       "/home/ubuntu/workspace/term-project/app/models/manage.rb": [
         1,
+        1,
         null,
         null
       ],
@@ -163,7 +164,7 @@
         null
       ]
     },
-    "timestamp": 1428271649
+    "timestamp": 1430044186
   },
   "RSpec": {
     "coverage": {
@@ -318,6 +319,7 @@
       ],
       "/home/ubuntu/workspace/term-project/app/models/manage.rb": [
         1,
+        1,
         null,
         null
       ],
@@ -329,6 +331,6 @@
         null
       ]
     },
-    "timestamp": 1429191996
+    "timestamp": 1430043915
   }
 }

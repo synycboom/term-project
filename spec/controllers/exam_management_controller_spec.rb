@@ -35,7 +35,7 @@ RSpec.describe ExamManagementController, :type => :controller do
   describe "show_all_subjects" do
     
     let(:web) {ExamManagementController.new}
-    let(:subject) { Subject.create(s_id:"cn201",s_name:"OOP",section:"570001",time:"12:00",date:"1/Jan/2558") }
+    let(:subject) { Subject.create(s_id:"cn201",s_name:"OOP",section:"570001",duration:"2") }
     let(:subjects) {Subject.all}
       
     it "return http success" do
@@ -55,7 +55,7 @@ RSpec.describe ExamManagementController, :type => :controller do
   describe "show subject detail" do
     
     it "should show detail of subject" do
-      s = Subject.create!(s_id:"cn201",s_name:"OOP",section:"570001",time:"12:00",date:"1/Jan/2558")
+      s = Subject.create!(s_id:"cn201",s_name:"OOP",section:"570001",duration:"2")
       get :show_subject_detail ,:dsub => s
     end
   end
@@ -119,7 +119,7 @@ RSpec.describe ExamManagementController, :type => :controller do
 		it 'should not create a new subject' do
 		  amount = Subject.count
 		  subject = {:s_id => 'cn201',:s_name => 'OOP',
-      :section => '570001', :time => '12:00-14:00', :date => '1/Jan/2558'}
+      :section => '570001', :duration => '2'}
       post :add_new_subject, {:subject => subject}
       flash[:notice].should_not be_nil
       response.should redirect_to(show_all_subjects_path)
@@ -135,7 +135,7 @@ RSpec.describe ExamManagementController, :type => :controller do
 		it 'should not create a new subject' do
 		  amount = Subject.count
       post :add_new_subject, {:s_id => 'cn201',:s_name => 'OOP',
-      :section => '570001', :time => '', :date => ''}
+      :section => '570001', :duration => ''}
       flash[:notice].should be_nil
       response.should render_template 'add_subject_form'
        expect(amount).to be == Subject.count
@@ -148,9 +148,9 @@ RSpec.describe ExamManagementController, :type => :controller do
   
   describe "update subject (happy path)"do
     it 'should update subject' do
-      sub1 =  Subject.create!(s_id:"cn201",s_name:"OOP",section:"570001",time:"12:00",date:"1/Jan/2558") 
+      sub1 =  Subject.create!(s_id:"cn201",s_name:"OOP",section:"570001",duration:"2") 
       post :update_s ,:s_id => sub1, :subject => {:s_id => 'cn201',:s_name => 'Data Structure 1',
-      :section => '570001', :time => '12:00-14:00', :date => '1/Jan/2558'}
+      :section => '570001', :duration => '2'}
 
       flash[:notice].should_not be_nil
       subT = Subject.where(s_id: 'cn201')
@@ -160,9 +160,9 @@ RSpec.describe ExamManagementController, :type => :controller do
   
   describe "update subject (sad path)"do
     it 'should update subject' do
-      sub1 =  Subject.create!(s_id:"cn201",s_name:"OOP",section:"570001",time:"12:00",date:"1/Jan/2558")
+      sub1 =  Subject.create!(s_id:"cn201",s_name:"OOP",section:"570001",duration:"2")
       post :update_s ,:s_id => sub1, :subject => {:s_id => '',:s_name => 'Data Structure 1',
-      :section => '', :time => '12:00-14:00', :date => '1/Jan/2558'}
+      :section => '', :duration => '2'}
       
       flash[:notice].should be_nil
       subT = Subject.where(s_id: 'cn201')
@@ -201,7 +201,7 @@ RSpec.describe ExamManagementController, :type => :controller do
   
   describe "delete subject " do
     it 'should delete subject' do
-      s =  Subject.create!(s_id:"cn201",s_name:"OOP",section:"570001",time:"12:00",date:"1/Jan/2558")
+      s =  Subject.create!(s_id:"cn201",s_name:"OOP",section:"570001",duration:"2")
       amount = Subject.count
       get :destroy_s ,:dsub => s
       flash[:notice].should_not be_nil
@@ -226,13 +226,13 @@ RSpec.describe ExamManagementController, :type => :controller do
 
   describe 'search subject' do
     it 'should search subject (happy path)' do
-      s =  Subject.create!(s_id:"cn201",s_name:"OOP",section:"570001",time:"12:00",date:"1/Jan/2558")
+      s =  Subject.create!(s_id:"cn201",s_name:"OOP",section:"570001",duration:"2")
       post :show_search_subject ,:search_by => "s_id", :search_value => "cn201"
       flash[:notice].should be_nil
     end
     
     it 'should search subject (sad path)' do
-      s =  Subject.create!(s_id:"cn201",s_name:"OOP",section:"570001",time:"12:00",date:"1/Jan/2558")
+      s =  Subject.create!(s_id:"cn201",s_name:"OOP",section:"570001",duration:"2")
       post :show_search_subject ,:search_by => "s_id", :search_value => "cn333"
       flash[:notice].should_not be_nil
     end

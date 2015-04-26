@@ -11,8 +11,7 @@ Scenario: Add a new subject
      | subject[s_id]  | cn201   |
      | subject[s_name]     | sc    |
      | subject[section]  | 60    |
-     | subject[date] | 14/Dec/2014|
-     | subject[time] | 14:30 |
+     | subject[duration] | 2 |
   And I press "Save Subject"
   Then I should see "cn201 was successfully created."
   
@@ -24,5 +23,4 @@ Scenario: If i didn't full filling the form field i can't add a new subject(sad 
   Then I should see "Subject id: can't be blank"
   And I should see "Subject name: can't be blank"
   And I should see "Section: can't be blank"
-  And I should see "Exam date: can't be blank"
-  And I should see "Exam time: can't be blank"
+  And I should see "Exam duration: can't be blank"

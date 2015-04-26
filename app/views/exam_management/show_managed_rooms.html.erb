@@ -10,61 +10,174 @@
         <label class="success-input"><%= flash[:notice] %></label>
         <% end %>
         
-        <table class="table table-bordered">
-            <tbody>
-                <tr>
-                <% @subjects.each do |subject| %>
-                
-                    <td>
-                        <ins><b><%= subject.s_id %></b></ins><br>
-                        <%= subject.section %><br>
-                        <%= subject.date %><br>
-                        <%= subject.time %><br>
-                    </td>
-                <% end %>
-                </tr>
-            </tbody>
-        </table>
-        <br><br>
-<!--        <h3 align='center'>Show All Subject</h3>
-        <table class="table table-bordered">
-            <thead>
-                <th>Subject ID</th>
-                <th>Subject Name</th>
-                <th>Section</th>
-                <th>Exam Date</th>
-                <th>Exam Time</th>
-            </thead>
-            <tbody>
-                <% @subjects.each do |subject| %>
-                <tr>
-                    <td><%= subject.s_id %></td>
-                    <td><%= subject.s_name %></td>
-                    <td><%= subject.section %></td>
-                    <td><%= subject.date %></td>
-                    <td><%= subject.time %></td>
-                </tr>
-                <% end %>
-            </tbody>
-        </table>
-        <h3 align='center'>Show All Location</h3>
-        <table class="table table-bordered">
-            <thead>
-                <th>Room Number</th>
-                <th>Total Table</th>
-                <th>Building</th>
-            </thead>
-            <tbody>
-                <% @locations.each do |location| %>
-                <tr>
-                    <td><%= location.room_no %></td>
-                    <td><%= location.total_table %></td>
-                    <td><%= location.building %></td>
-                </tr>
-                <% end %>
-            </tbody>
-        </table>
--->        
-        <br><button type="button" class="btn btn-default btn-lg btn-block" onclick="window.location.href='index.html'">Back</button>
+ 
+ <style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:13px 20px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;border-top-width:1px;border-bottom-width:1px;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:13px 20px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;border-top-width:1px;border-bottom-width:1px;}
+.tg .tg-s6z2{text-align:center}
+</style>
+
+<% unless @full %>
+  <table class="tg">
+    <tr>
+      <th class="tg-031e">room_day\Time</th>
+      <th class="tg-s6z2">9:00-9:30</th>
+      <th class="tg-031e">9.30-10:00</th>
+      <th class="tg-031e">10.00-10:30</th>
+      <th class="tg-031e">10.30-11:00</th>
+      <th class="tg-031e">11.00-11:30</th>
+      <th class="tg-031e">11.30-12:00</th>
+      <th class="tg-031e">12.00-12:30</th>
+      <th class="tg-031e">12.30-13:00</th>
+      <th class="tg-031e">13.00-13:30</th>
+      <th class="tg-031e">13.30-14:00</th>
+      <th class="tg-031e">14.00-14:30</th>
+      <th class="tg-031e">14.30-15:00</th>
+      <th class="tg-031e">15.00-15:30</th>
+      <th class="tg-031e">15.30-16:00</th>
+      <th class="tg-031e">16.00-16:30</th>
+    </tr>
+    
+    <% @manage.each do|i| %>
+    <tr>
+    <td class="tg-031e">
+      <%= i.room_no %>
+      <%= i.date %>
+    </td>
+    <td class="tg-031e">
+      <%= i.slot1 %>
+    </td>
+    <td class="tg-031e">
+      <%= i.slot2 %>
+    </td>
+    <td class="tg-031e">
+      <%= i.slot3 %>
+    </td>
+    <td class="tg-031e">
+      <%= i.slot4 %>
+    </td>
+    <td class="tg-031e">
+      <%= i.slot5 %>
+    </td>
+    <td class="tg-031e">
+      <%= i.slot6 %>
+    </td>
+    <td class="tg-031e">
+      <%= i.slot7 %>
+    </td>
+    <td class="tg-031e">
+      <%= i.slot8 %>
+    </td>
+    <td class="tg-031e">
+      <%= i.slot9 %>
+    </td>
+    <td class="tg-031e">
+      <%= i.slot10 %>
+    </td>
+    <td class="tg-031e">
+      <%= i.slot11 %>
+    </td>
+    <td class="tg-031e">
+      <%= i.slot12 %>
+    </td>
+    <td class="tg-031e">
+      <%= i.slot13 %>
+    </td>
+    <td class="tg-031e">
+      <%= i.slot14 %>
+    </td>
+    <td class="tg-031e">
+      <%= i.slot15 %>
+    </td>
+    
+  
+    <br>
+    </tr>
+    <% end%>
+<% else %>
+  <%= "The amount of date is not enough"  %>
+<% end %>
+  
+  
+</table>
+ 
+<!--       
+<table class="table table-bordered">
+  <tr>
+     <th>Day\Time</th>
+     <th>8.00</th>
+     <th>9.00</th>
+     <th>10.00</th>
+     <th>11.00</th>
+     <th>12.00</th>
+     <th>13.00</th>
+     <th>14.00</th>
+     <th>15.00</th>
+     <th>16.00</th>
+  </tr>
+  <tr>
+    <td>Monday</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Tuesday</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Wednesday</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Thursday</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Friday</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+-->
+        <br><br><button onclick="window.location.href='index.html'" class='btn btn-info'>Back</button>
     </body>
 </html>

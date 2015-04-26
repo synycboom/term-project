@@ -5,21 +5,20 @@ Feature: Edit or remove the component of a subjects
   
 Scenario: Show edit page
   Given the following subjects exist:
-  | s_id  |     s_name        | section | date      |     time    |
-  | cn202 | Data structure 1  | 680002  | 1/Jan/2558|    14:00    |
+  | s_id  |     s_name        | section | duration      | 
+  | cn202 | Data structure 1  | 680002  | 2 |    
   And  I am on the home page
   Given I follow "Go to show all subjects"
   Then I follow "Details"
   And I follow "Edit"
   Then the "subject[s_name]" field should contain "Data structure 1"
   And the "subject[section]" field should contain "680002"
-  And the "subject[date]" field should contain "1/Jan/2558" 
-  And the "subject[time]" field should contain "14:00"
+  And the "subject[duration]" field should contain "2" 
   
 Scenario: Show edit success
   Given the following subjects exist:
-  | s_id  |     s_name        | section | date      |     time    |
-  | cn202 | Data structure 1  | 680002  | 1/Jan/2558|    14:00    |
+  | s_id  |     s_name        | section | duration      |  
+  | cn202 | Data structure 1  | 680002  | 2 |  
   And  I am on the home page
   Given I follow "Go to show all subjects"
   Then I follow "Details"
@@ -29,8 +28,8 @@ Scenario: Show edit success
   
 Scenario: Show delete success
   Given the following subjects exist:
-  | s_id  |     s_name        | section | date      |     time    |
-  | cn202 | Data structure 1  | 680002  | 1/Jan/2558|    14:00    |
+  | s_id  |     s_name        | section | duration      |   
+  | cn202 | Data structure 1  | 680002  | 2|  
   And  I am on the home page
   Given I follow "Go to show all subjects"
   Then I follow "Details"
