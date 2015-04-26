@@ -18,7 +18,10 @@
 .tg .tg-s6z2{text-align:center}
 </style>
 
-<% unless @full %>
+<button type="button" class="btn btn-default btn-lg btn-block">
+            <%= link_to 'Go to generate', generate_schedule_form_path %></button>
+
+<% unless Manage.full %>
   <table class="tg">
     <tr>
       <th class="tg-031e">room_day\Time</th>
@@ -41,143 +44,66 @@
     
     <% @manage.each do|i| %>
     <tr>
-    <td class="tg-031e">
-      <%= i.room_no %>
-      <%= i.date %>
-    </td>
-    <td class="tg-031e">
-      <%= i.slot1 %>
-    </td>
-    <td class="tg-031e">
-      <%= i.slot2 %>
-    </td>
-    <td class="tg-031e">
-      <%= i.slot3 %>
-    </td>
-    <td class="tg-031e">
-      <%= i.slot4 %>
-    </td>
-    <td class="tg-031e">
-      <%= i.slot5 %>
-    </td>
-    <td class="tg-031e">
-      <%= i.slot6 %>
-    </td>
-    <td class="tg-031e">
-      <%= i.slot7 %>
-    </td>
-    <td class="tg-031e">
-      <%= i.slot8 %>
-    </td>
-    <td class="tg-031e">
-      <%= i.slot9 %>
-    </td>
-    <td class="tg-031e">
-      <%= i.slot10 %>
-    </td>
-    <td class="tg-031e">
-      <%= i.slot11 %>
-    </td>
-    <td class="tg-031e">
-      <%= i.slot12 %>
-    </td>
-    <td class="tg-031e">
-      <%= i.slot13 %>
-    </td>
-    <td class="tg-031e">
-      <%= i.slot14 %>
-    </td>
-    <td class="tg-031e">
-      <%= i.slot15 %>
-    </td>
+      <td class="tg-031e">
+        <%= i.room_no %>
+        <%= i.date %>
+      </td>
+      <td class="tg-031e">
+        <%= i.slot1 %>
+      </td>
+      <td class="tg-031e">
+        <%= i.slot2 %>
+      </td>
+      <td class="tg-031e">
+        <%= i.slot3 %>
+      </td>
+      <td class="tg-031e">
+        <%= i.slot4 %>
+      </td>
+      <td class="tg-031e">
+        <%= i.slot5 %>
+      </td>
+      <td class="tg-031e">
+        <%= i.slot6 %>
+      </td>
+      <td class="tg-031e">
+        <%= i.slot7 %>
+      </td>
+      <td class="tg-031e">
+        <%= i.slot8 %>
+      </td>
+      <td class="tg-031e">
+        <%= i.slot9 %>
+      </td>
+      <td class="tg-031e">
+        <%= i.slot10 %>
+      </td>
+      <td class="tg-031e">
+        <%= i.slot11 %>
+      </td>
+      <td class="tg-031e">
+        <%= i.slot12 %>
+      </td>
+      <td class="tg-031e">
+        <%= i.slot13 %>
+      </td>
+      <td class="tg-031e">
+        <%= i.slot14 %>
+      </td>
+      <td class="tg-031e">
+        <%= i.slot15 %>
+      </td>
+      
     
+      <br>
+      </tr>
+      <% end%>
+    <% else %>
+      <%= "The amount of date is not enough"  %>
+    <% end %>
   
-    <br>
-    </tr>
-    <% end%>
-<% else %>
-  <%= "The amount of date is not enough"  %>
-<% end %>
-  
-  
-</table>
- 
-<!--       
-<table class="table table-bordered">
-  <tr>
-     <th>Day\Time</th>
-     <th>8.00</th>
-     <th>9.00</th>
-     <th>10.00</th>
-     <th>11.00</th>
-     <th>12.00</th>
-     <th>13.00</th>
-     <th>14.00</th>
-     <th>15.00</th>
-     <th>16.00</th>
-  </tr>
-  <tr>
-    <td>Monday</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Tuesday</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Wednesday</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Thursday</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Friday</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-</table>
--->
+  </table>
+
         <br><br><button onclick="window.location.href='index.html'" class='btn btn-info'>Back</button>
     </body>
 </html>

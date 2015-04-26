@@ -19,8 +19,7 @@ class ExamManagementController < ApplicationController
   def generate_schedule_form
   end
   
-  
-  def show_managed_rooms
+  def manage_room
     start_year = params[:start_date][:year]
     start_month = params[:start_date][:month]
     start_day = params[:start_date][:day]
@@ -80,7 +79,7 @@ class ExamManagementController < ApplicationController
 
       last_room = Location.last
       find_new_time_slot = false
-      @full = false
+      Manage.full = false
       
       all_subject.each do |s|
         
@@ -93,7 +92,7 @@ class ExamManagementController < ApplicationController
         manage = Manage.all
         
         #if there is available time slot
-        unless @full
+        unless Manage.full
           #if general time are available (9-11 and 13-15)
           unless (find_new_time_slot)
             #for midterm exam
@@ -197,7 +196,7 @@ class ExamManagementController < ApplicationController
               
               #if time slot is full
               if ( (m.date === endd)  && ( m.room_no == last_room.room_no))
-                @full = true
+               Manage.full = true
               end
               
               #if 11:00-11:30 is available
@@ -254,10 +253,13 @@ class ExamManagementController < ApplicationController
         
       end #all_subject.each
       
-      @manage = Manage.all
+      redirect_to show_managed_rooms_path
     end
-    
-
+  end
+  
+  
+  def show_managed_rooms
+     @manage = Manage.all
   end
   
   def show_all_subjects

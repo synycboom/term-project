@@ -9,7 +9,7 @@
         <% if flash[:warning] %>
             <label class="invalid-input"><%= flash[:warning] %></label>
         <% end %>
-        <%= form_tag("show_managed_rooms", method: "get",class: 'form-inline') do %>
+        <%= form_tag("manage_room", method: "get",class: 'form-inline') do %>
             <%= label_tag(:q, "Start date:") %>
             <%= select_date Date.today, prefix: :start_date %>
             <%= label_tag(:s, "End date:") %>
