@@ -246,7 +246,7 @@ class ExamManagementController < ApplicationController
             end #find new time slot (11-13)
             
           end #unless find new time slot
-          
+        #if full
         else
           break
         end #unless full
