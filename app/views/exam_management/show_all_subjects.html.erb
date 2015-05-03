@@ -23,7 +23,6 @@
                 <th>Subject ID</th>
                 <th>Subject Name</th>
                 <th>Section</th>
-                <th>Exam Duration</th>
                 <th>Details</th>
             </thead>
             <tbody>
@@ -37,9 +36,6 @@
                     </td>
                     <td>
                         <%= subject.section %>
-                    </td>
-                    <td>
-                        <%= subject.duration %>
                     </td>
                     <td>
                         <%= link_to 'Details', show_subject_detail_path(:dsub => subject) %>

@@ -1,5 +1,5 @@
 class Subject < ActiveRecord::Base
-   validates :s_id, :s_name, :section ,:duration, presence: true
+   validates :s_id, :s_name, :section , presence: true
    self.primary_key = 's_id'
-   attr_accessible :s_id, :s_name,:section,:duration 
+   attr_accessible :s_id, :s_name,:section
 end

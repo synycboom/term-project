@@ -111,3 +111,5 @@ Scenario: Show Managed Rooms(sad path)
   And I should not see "Data structure 1"
   And I should not see "2015-06-26"
   And I should not see "418"
+  
+  

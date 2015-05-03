@@ -32,12 +32,7 @@
                 <%end%>
                     <%= f.text_field :section, :class => 'form-control',:placeholder => "ex. 570001"  %><br />
                     
-                <% unless @subject.errors.empty? %>
-                    <%= f.label :duration, "Exam duration: #{@subject.errors[:duration].first}" %>
-                <%else%>
-                    <%= f.label :duration, "Exam duration" %>:
-                <%end%>
-                    <%= f.text_field :duration, :class => 'form-control',:placeholder => "ex. 2"  %><br />
+
                     
                 <%= f.submit 'Save Subject', :class => 'btn btn-success' %>
             </div>

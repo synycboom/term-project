@@ -14,7 +14,12 @@
             <%= select_date Date.today, prefix: :start_date %>
             <%= label_tag(:s, "End date:") %>
             <%= select_date Date.today, prefix: :end_date %>
+            <br>
+            <%= label_tag(:h, "Test duration:") %>
+            <%= select_tag(:type,options_for_select([ ['Midterm', 'midterm'] ,['Final','final']])) %>
+            <br>
             <%= submit_tag "Generate!!",class: 'btn btn-danger' %>
+            
         <% end %>
         
     </body>

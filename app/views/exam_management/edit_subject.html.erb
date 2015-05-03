@@ -27,12 +27,6 @@
                     <%= f.text_field :section, :class => 'form-control',:placeholder => "ex. 570001"  %><br />
                     
                     
-                <% unless @subject.errors.empty? %>
-                    <%= f.label :duration, "Exam duration: #{@subject.errors[:duration].first}" %>
-                <%else%>
-                    <%= f.label :duration, "Exam duration" %>:
-                <%end%>
-                    <%= f.text_field :duration, :class => 'form-control',:placeholder => "ex. 2"  %><br />
                     
                 <%= f.submit 'Update', :class => 'btn btn-success' %>&nbsp&nbsp<button type="button" class="btn btn-info" onclick="history.go(-1);">Back</button>
             </div>

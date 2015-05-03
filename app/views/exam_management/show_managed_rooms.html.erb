@@ -22,9 +22,10 @@
             <%= link_to 'Go to generate', generate_schedule_form_path %></button>
 
 <% unless Manage.full %>
+<div class="container-fluid" >
   <table class="tg">
     <tr>
-      <th class="tg-031e">room_day\Time</th>
+      <th class="tg-031e">Room | Date</th>
       <th class="tg-s6z2">9:00-9:30</th>
       <th class="tg-031e">9.30-10:00</th>
       <th class="tg-031e">10.00-10:30</th>
@@ -45,64 +46,187 @@
     <% @manage.each do|i| %>
     <tr>
       <td class="tg-031e">
+        Room:
         <%= i.room_no %>
+        </br>
         <%= i.date %>
       </td>
-      <td class="tg-031e">
-        <%= i.slot1 %>
-      </td>
-      <td class="tg-031e">
-        <%= i.slot2 %>
-      </td>
-      <td class="tg-031e">
-        <%= i.slot3 %>
-      </td>
-      <td class="tg-031e">
-        <%= i.slot4 %>
-      </td>
-      <td class="tg-031e">
-        <%= i.slot5 %>
-      </td>
-      <td class="tg-031e">
-        <%= i.slot6 %>
-      </td>
-      <td class="tg-031e">
-        <%= i.slot7 %>
-      </td>
-      <td class="tg-031e">
-        <%= i.slot8 %>
-      </td>
-      <td class="tg-031e">
-        <%= i.slot9 %>
-      </td>
-      <td class="tg-031e">
-        <%= i.slot10 %>
-      </td>
-      <td class="tg-031e">
-        <%= i.slot11 %>
-      </td>
-      <td class="tg-031e">
-        <%= i.slot12 %>
-      </td>
-      <td class="tg-031e">
-        <%= i.slot13 %>
-      </td>
-      <td class="tg-031e">
-        <%= i.slot14 %>
-      </td>
-      <td class="tg-031e">
-        <%= i.slot15 %>
-      </td>
-      
-    
+      <!-- check before span -->
+      <%
+        #total subject in 1 day
+        nil_count = 1;
+        total_subject = Hash.new
+        
+        if total_subject.has_key?(i.slot1)
+          total_subject[i.slot1] = total_subject[i.slot1] + 1
+        elsif i.slot1.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot1] = 1
+        end
+        
+        if total_subject.has_key?(i.slot2)
+          total_subject[i.slot2] = total_subject[i.slot2] + 1
+        elsif i.slot2.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot2] = 1
+        end
+
+          
+        if total_subject.has_key?(i.slot3)
+          total_subject[i.slot3] = total_subject[i.slot3] + 1
+        elsif i.slot3.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot3] = 1
+        end
+
+          
+        if total_subject.has_key?(i.slot4)
+          total_subject[i.slot4] = total_subject[i.slot4] + 1
+        elsif i.slot4.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot4] = 1
+        end
+
+          
+        if total_subject.has_key?(i.slot5)
+          total_subject[i.slot5] = total_subject[i.slot5] + 1
+        elsif i.slot5.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot5] = 1
+        end
+
+          
+        if total_subject.has_key?(i.slot6)
+          total_subject[i.slot6] = total_subject[i.slot6] + 1
+        elsif i.slot6.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot6] = 1
+        end
+
+          
+        if total_subject.has_key?(i.slot7)
+          total_subject[i.slot7] = total_subject[i.slot7] + 1
+        elsif i.slot7.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot7] = 1
+        end
+
+          
+        if total_subject.has_key?(i.slot8)
+          total_subject[i.slot8] = total_subject[i.slot8] + 1
+        elsif i.slot8.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot8] = 1
+        end
+
+          
+        if total_subject.has_key?(i.slot9)
+          total_subject[i.slot9] = total_subject[i.slot9] + 1
+        elsif i.slot9.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot9] = 1
+        end
+          
+        if total_subject.has_key?(i.slot10)
+          total_subject[i.slot10] = total_subject[i.slot10] + 1
+        elsif i.slot10.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot10] = 1
+        end
+          
+        if total_subject.has_key?(i.slot11)
+          total_subject[i.slot11] = total_subject[i.slot11] + 1
+        elsif i.slot11.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot11] = 1
+        end
+          
+        if total_subject.has_key?(i.slot12)
+          total_subject[i.slot12] = total_subject[i.slot12] + 1
+        elsif i.slot12.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot12] = 1
+        end
+        
+        if total_subject.has_key?(i.slot13)
+          total_subject[i.slot13] = total_subject[i.slot13] + 1
+        elsif i.slot13.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot13] = 1
+        end
+        
+        if total_subject.has_key?(i.slot14)
+          total_subject[i.slot14] = total_subject[i.slot14] + 1
+        elsif i.slot14.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot14] = 1
+        end
+        
+        if total_subject.has_key?(i.slot15)
+          total_subject[i.slot15] = total_subject[i.slot15] + 1
+        elsif i.slot15.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot15] = 1
+        end
+        
+        
+      %>
+      <% index_count = 0 %>
+      <% total_subject.each do |s| %>
+      <% if total_subject.values[index_count] == "Free" %>
+        <td class="col tg-031e" colspan="<%= 1 %>" style="background-color:#FFE0EC;">
+          <%= total_subject.values[index_count] %>
+        </td>
+      <% else %>
+        <td class="col tg-031e" colspan="<%= total_subject.values[index_count] %>" style="background-color:#CBE832;">
+          <%= total_subject.keys[index_count] %>
+        </td>
+      <% end %>
+      <% index_count += 1 %>
+      <% end %>
+        
+
       <br>
       </tr>
-      <% end%>
-    <% else %>
+
+
+  <% end%>
+  <% else %>
       <%= "The amount of date is not enough"  %>
-    <% end %>
-  
-  </table>
+  <% end %>
+      </table>
+    </div>
+
 
         <br><br><button onclick="window.location.href='index.html'" class='btn btn-info'>Back</button>
     </body>

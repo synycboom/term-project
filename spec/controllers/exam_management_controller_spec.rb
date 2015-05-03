@@ -251,6 +251,15 @@ RSpec.describe ExamManagementController, :type => :controller do
       flash[:notice].should_not be_nil
     end
   end
-    
+  
+  ######################################################################
+  #                        manage room function                        #
+  ######################################################################
+  
+  describe 'manage room' do
+    it 'should generate examination time, date and room automatically' do
+      
+    end
+  end
  
 end

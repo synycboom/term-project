@@ -27,6 +27,8 @@ class ExamManagementController < ApplicationController
     end_year = params[:end_date][:year]
     end_month = params[:end_date][:month]
     end_day = params[:end_date][:day]
+    ##test duration
+    type = params[:type]
     
     some_error = false
     
@@ -64,7 +66,11 @@ class ExamManagementController < ApplicationController
       #################################################################################
       #           first create time slot for each subject in manage model             #
       #################################################################################
+      
       Manage.delete_all
+      #Manage.where(:exam_type => "#{type}").destroy_all
+      # Manage.delete_by(exam_type: "#{type}")
+      #Manage.where(exam_type: type).delete_all
       
       interval.each do |i|
         all_location.each do |l|
@@ -75,181 +81,164 @@ class ExamManagementController < ApplicationController
       #################################################################################
       #           add subject to manage slot                                         #
       #################################################################################
-      # 2 ชม / 0.5 
 
       last_room = Location.last
       find_new_time_slot = false
       Manage.full = false
       
       all_subject.each do |s|
-        
-        temp = s.duration.to_i * 2
-        fraction = (s.duration.to_f * 10) % 10
-        if fraction == 3.0
-          temp += 1
+        if type == 'midterm'
+          temp = 4
+        else
+          temp = 6
         end
+        # temp = s.duration.to_i * 2
+        # fraction = (s.duration.to_f * 10) % 10
+        # if fraction == 3.0
+        #   temp += 1
+        # end
         
         manage = Manage.all
         
         #if there is available time slot
-        unless Manage.full
-          #if general time are available (9-11 and 13-15)
-          unless (find_new_time_slot)
-            #for midterm exam
-            manage.each do |m|
-              
-              #at the morning 
-              #if 9:00 - 9:30 is available
-              if m.slot1.nil?  && temp > 0
-                man = Manage.find(m.id)
-                man.assign_attributes({ :slot1 => "#{s.s_name}"})
-                man.save!
-                temp -= 1
-              end
-              if temp == 0
-                break
-              end
-              #if 9:30 - 10:00 is available
-              if m.slot2.nil?   && temp > 0
-                man = Manage.find(m.id)
-                man.assign_attributes({ :slot2 => "#{s.s_name}"})
-                man.save!
-                temp -= 1
-              end
-              if temp == 0
-                break
-              end
-              #if 10:00 - 10:30 is available
-              if m.slot3.nil?  && temp > 0
-                man = Manage.find(m.id)
-                man.assign_attributes({ :slot3 => "#{s.s_name}"})
-                man.save!
-                temp -= 1
-              end
-              if temp == 0
-                break
-              end
-              #if 10:30 - 11:00 is available
-              if m.slot4.nil? && temp > 0
-                man = Manage.find(m.id)
-                man.assign_attributes({ :slot4 => "#{s.s_name}"})
-                man.save!
-                temp -= 1
-              end
-              if temp == 0
-                break
-              end
-    
-              if ( (m.date === endd)  && ( m.room_no == last_room.room_no))
-                find_new_time_slot = true
-              end
-              
-              #at the afternoon 
-              #if 13:00 - 13:30 is available
-              if m.slot9.nil? && temp > 0
-                man = Manage.find(m.id)
-                man.assign_attributes({ :slot9 => "#{s.s_name}"})
-                man.save!
-                temp -= 1
-              end
-              if temp == 0
-                break
-              end
-              #if 13:30 - 14:00 is available
-              if m.slot10.nil?  && temp > 0
-                man = Manage.find(m.id)
-                man.assign_attributes({ :slot10 => "#{s.s_name}"})
-                man.save!
-                temp -= 1
-              end
-              if temp == 0
-                break
-              end
-              #if 14:00 - 14:30 is available
-              if m.slot11.nil?  && temp > 0
-                man = Manage.find(m.id)
-                man.assign_attributes({ :slot11 => "#{s.s_name}"})
-                man.save!
-                temp -= 1
-              end
-              if temp == 0
-                break
-              end
-              #if 14:30 - 15:00 is available
-              if m.slot12.nil? && temp > 0
-                man = Manage.find(m.id)
-                man.assign_attributes({ :slot12 => "#{s.s_name}"})
-                man.save!
-                temp -= 1
-              end
-              
-              if temp == 0
-                break
-              end
-              
-            end #manage.each
+        if temp == 4
+          unless Manage.full
           
-          #if general time are not available (9-11 and 13-15). add remain subjects at time slot(11-13)
-          else #find new time slot
-          
-            manage.each do |m|
+            #if general time are available (9-11 and 13-15)
+            unless (find_new_time_slot)
+              #for midterm exam
+              manage.each do |m|
               
+                #at the morning 
+                #if 9:00 - 11:00 is available
+                if m.slot1.nil?  && temp > 0
+                  man = Manage.find(m.id)
+                  man.assign_attributes({ :slot1 => "#{s.s_name}",
+                  :slot2 => "#{s.s_name}",
+                  :slot3 => "#{s.s_name}",
+                  :slot4 => "#{s.s_name}",
+                  :exam_type => "#{type}"})
+                  man.save!
+                  temp -= 4
+                end
+                if temp == 0
+                  break
+                end
+             
+                if ( (m.date === endd)  && ( m.room_no == last_room.room_no))
+                  find_new_time_slot = true
+                end
+                
+                #at the afternoon 
+                #if 13:00 - 15:00 is available
+                if m.slot9.nil? && temp > 0
+                  man = Manage.find(m.id)
+                  man.assign_attributes({ :slot9 => "#{s.s_name}",
+                    :slot10 => "#{s.s_name}",
+                    :slot11 => "#{s.s_name}",
+                    :slot12 => "#{s.s_name}",
+                    :exam_type => "#{type}"
+                  })
+                  man.save!
+                  temp -= 4
+                end
+                if temp == 0
+                  break
+                end
+                
+                end #manage.each
+            
+              #if general time are not available (9-11 and 13-15). add remain subjects at time slot(11-13)
+            else #find new time slot
+            
+              manage.each do |m|
+                
+                #if time slot is full
+                if ( (m.date === endd)  && ( m.room_no == last_room.room_no))
+                 Manage.full = true
+                end
+                
+                #if 11:00-13:00 is available
+                if m.slot5.nil?  && temp > 0
+                  man = Manage.find(m.id)
+                  man.assign_attributes({ :slot5 => "#{s.s_name}",
+                    :slot6 => "#{s.s_name}",
+                    :slot7 => "#{s.s_name}",
+                    :slot8 => "#{s.s_name}",
+                    :exam_type => "#{type}"
+                  })
+                  man.save!
+                  temp -= 4
+                end
+                if temp == 0
+                  break
+                end
+                
+                
+              end #find new time slot (11-13)
+              
+            end #unless find new time slot
+            
+          #if full
+          else
+            break
+          end #unless full
+        
+        else #final exam
+          unless Manage.full
+            manage.each do |m|
               #if time slot is full
               if ( (m.date === endd)  && ( m.room_no == last_room.room_no))
                Manage.full = true
               end
               
-              #if 11:00-11:30 is available
-              if m.slot5.nil?  && temp > 0
+              #at the morning 
+              #if 9:00 - 12:00 is available
+              if m.slot1.nil?  && temp > 0
                 man = Manage.find(m.id)
-                man.assign_attributes({ :slot5 => "#{s.s_name}"})
+                man.assign_attributes({ :slot1 => "#{s.s_name}",
+                  :slot2 => "#{s.s_name}",
+                  :slot3 => "#{s.s_name}",
+                  :slot4 => "#{s.s_name}",
+                  :slot5 => "#{s.s_name}",
+                  :slot6 => "#{s.s_name}",
+                  :exam_type => "#{type}"
+                })
                 man.save!
-                temp -= 1
+                temp -= 6
               end
               if temp == 0
                 break
               end
               
-              #if 11:30-12:00 is available
-              if m.slot6.nil?  && temp > 0
+              #at the afternoon 
+              #if 13:30 - 16:30 is available
+              if m.slot10.nil? && temp > 0
                 man = Manage.find(m.id)
-                man.assign_attributes({ :slot6 => "#{s.s_name}"})
+                man.assign_attributes({ :slot10 => "#{s.s_name}",
+                  :slot11 => "#{s.s_name}",
+                  :slot12 => "#{s.s_name}",
+                  :slot13 => "#{s.s_name}",
+                  :slot14 => "#{s.s_name}",
+                  :slot15 => "#{s.s_name}",
+                  :exam_type => "#{type}"
+                })
                 man.save!
-                temp -= 1
+                temp -= 6
               end
               if temp == 0
                 break
               end
+             
+              # if ( (m.date === endd)  && ( m.room_no == last_room.room_no))
+              #   Manage.full = true
+              # end
               
-              #if 12:00-12:30 is available
-              if m.slot7.nil?  && temp > 0
-                man = Manage.find(m.id)
-                man.assign_attributes({ :slot7 => "#{s.s_name}"})
-                man.save!
-                temp -= 1
-              end
-              if temp == 0
-                break
-              end
-              
-              #if 12:30-13:00 is available
-              if m.slot8.nil?  && temp > 0
-                man = Manage.find(m.id)
-                man.assign_attributes({ :slot8 => "#{s.s_name}"})
-                man.save!
-                temp -= 1
-              end
-              if temp == 0
-                break
-              end
-              
-            end #find new time slot (11-13)
-            
-          end #unless find new time slot
-        #if full
-        else
-          break
-        end #unless full
+            end #manage.each
+          else
+            break
+          end #unless full  
+        end
         
       end #all_subject.each
       

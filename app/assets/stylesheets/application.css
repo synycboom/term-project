@@ -30,3 +30,9 @@ url('../assets/glyphicons-halflingsregular.svg#glyphicons_halflingsregular') for
 .invalid-input {
     color: red;
 }
+
+.col{
+  text-align:center; 
+}
+
+

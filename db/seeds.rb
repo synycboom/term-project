@@ -16,11 +16,11 @@ locations.each do |location|
   Location.create!(location)
 end
 
-subjects = [{:s_id => 'cn201', :s_name => 'OOP', :section => '570001', :duration => '2'},
-    	  {:s_id => 'cn202', :s_name => 'Data structure 1', :section => '680002', :duration => '2'},
-    	  {:s_id => 'cn301', :s_name => 'Data structure 2', :section => '570003', :duration => '2'},
-    	  {:s_id => 'cn418', :s_name => 'Web Application Security', :section => '340001', :duration => '2'},
-    	  #{:s_id => 'cn350', :s_name => 'Microprocessor System Design', :section => '270008', :duration => '2'},
+subjects = [{:s_id => 'cn201', :s_name => 'OOP', :section => '570001'},
+    	  {:s_id => 'cn202', :s_name => 'Data structure 1', :section => '680002'},
+    	  {:s_id => 'cn301', :s_name => 'Data structure 2', :section => '570003'},
+    	  {:s_id => 'cn418', :s_name => 'Web Application Security', :section => '340001'},
+    	  {:s_id => 'cn350', :s_name => 'Microprocessor System Design', :section => '270008'},
   	 ]
 
 subjects.each do |subject|
