@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150320082603) do
+ActiveRecord::Schema.define(:version => 20150516164750) do
 
   create_table "locations", :id => false, :force => true do |t|
     t.string   "room_no"
@@ -22,6 +22,29 @@ ActiveRecord::Schema.define(:version => 20150320082603) do
   end
 
   create_table "manages", :force => true do |t|
+    t.string   "room_no"
+    t.date     "date"
+    t.string   "slot1"
+    t.string   "slot2"
+    t.string   "slot3"
+    t.string   "slot4"
+    t.string   "slot5"
+    t.string   "slot6"
+    t.string   "slot7"
+    t.string   "slot8"
+    t.string   "slot9"
+    t.string   "slot10"
+    t.string   "slot11"
+    t.string   "slot12"
+    t.string   "slot13"
+    t.string   "slot14"
+    t.string   "slot15"
+    t.string   "exam_type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "manages_finals", :force => true do |t|
     t.string   "room_no"
     t.date     "date"
     t.string   "slot1"

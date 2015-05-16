@@ -1,0 +1,256 @@
+<html>
+    <head>
+      <style type="text/css">
+        .tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
+        .tg td{font-family:Arial, sans-serif;font-size:14px;padding:13px 20px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;border-top-width:1px;border-bottom-width:1px;}
+        .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:13px 20px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;border-top-width:1px;border-bottom-width:1px;}
+        .tg .tg-s6z2{text-align:center}
+      </style>
+    </head>
+    <body>
+        <p class="bg-primary">EXAM MANAGEMENT</p>
+        <div class="page-header">
+        <h3>Show Managed Room</h3>
+        </div>
+        <% if flash[:notice] %>
+        <label class="success-input"><%= flash[:notice] %></label>
+        <% end %>
+        
+ 
+ <style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:13px 20px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;border-top-width:1px;border-bottom-width:1px;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:13px 20px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;border-top-width:1px;border-bottom-width:1px;}
+.tg .tg-s6z2{text-align:center}
+</style>
+
+<button type="button" class="btn btn-default btn-lg btn-block">
+            <%= link_to 'Go to generate', generate_schedule_form_path %></button>
+<br>           
+
+
+<% unless Manage.full %>
+<div class="container-fluid" >
+  <table class="tg">
+    <tr>
+      <th class="tg-031e">Room | Date</th>
+      <th class="tg-s6z2">9:00-9:30</th>
+      <th class="tg-031e">9.30-10:00</th>
+      <th class="tg-031e">10.00-10:30</th>
+      <th class="tg-031e">10.30-11:00</th>
+      <th class="tg-031e">11.00-11:30</th>
+      <th class="tg-031e">11.30-12:00</th>
+      <th class="tg-031e">12.00-12:30</th>
+      <th class="tg-031e">12.30-13:00</th>
+      <th class="tg-031e">13.00-13:30</th>
+      <th class="tg-031e">13.30-14:00</th>
+      <th class="tg-031e">14.00-14:30</th>
+      <th class="tg-031e">14.30-15:00</th>
+      <th class="tg-031e">15.00-15:30</th>
+      <th class="tg-031e">15.30-16:00</th>
+      <th class="tg-031e">16.00-16:30</th>
+    </tr>
+    
+    <% @manage.each do|i| %>
+    <tr>
+      <td class="tg-031e">
+        Room:
+        <%= i.room_no %>
+        </br>
+        <%= i.date %>
+      </td>
+      <!-- check before span -->
+      <%
+        #total subject in 1 day
+        nil_count = 1;
+        total_subject = Hash.new
+        first_subject_slot = Hash.new
+        
+        if total_subject.has_key?(i.slot1)
+          total_subject[i.slot1] = total_subject[i.slot1] + 1
+        elsif i.slot1.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot1] = 1
+          first_subject_slot[i.slot1] = 1
+        end
+        
+        if total_subject.has_key?(i.slot2)
+          total_subject[i.slot2] = total_subject[i.slot2] + 1
+        elsif i.slot2.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot2] = 1
+          first_subject_slot[i.slot2] = 2
+        end
+
+          
+        if total_subject.has_key?(i.slot3)
+          total_subject[i.slot3] = total_subject[i.slot3] + 1
+        elsif i.slot3.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot3] = 1
+          first_subject_slot[i.slot3] = 3
+        end
+
+          
+        if total_subject.has_key?(i.slot4)
+          total_subject[i.slot4] = total_subject[i.slot4] + 1
+        elsif i.slot4.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot4] = 1
+          first_subject_slot[i.slot4] = 4
+        end
+
+          
+        if total_subject.has_key?(i.slot5)
+          total_subject[i.slot5] = total_subject[i.slot5] + 1
+        elsif i.slot5.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot5] = 1
+          first_subject_slot[i.slot5] = 5
+        end
+
+          
+        if total_subject.has_key?(i.slot6)
+          total_subject[i.slot6] = total_subject[i.slot6] + 1
+        elsif i.slot6.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot6] = 1
+          first_subject_slot[i.slot6] = 6
+        end
+
+          
+        if total_subject.has_key?(i.slot7)
+          total_subject[i.slot7] = total_subject[i.slot7] + 1
+        elsif i.slot7.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot7] = 1
+          first_subject_slot[i.slot7] = 7
+        end
+
+          
+        if total_subject.has_key?(i.slot8)
+          total_subject[i.slot8] = total_subject[i.slot8] + 1
+        elsif i.slot8.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot8] = 1
+          first_subject_slot[i.slot7] = 7
+        end
+
+          
+        if total_subject.has_key?(i.slot9)
+          total_subject[i.slot9] = total_subject[i.slot9] + 1
+        elsif i.slot9.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot9] = 1
+          first_subject_slot[i.slot9] = 9
+        end
+          
+        if total_subject.has_key?(i.slot10)
+          total_subject[i.slot10] = total_subject[i.slot10] + 1
+        elsif i.slot10.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot10] = 1
+          first_subject_slot[i.slot10] = 10
+        end
+          
+        if total_subject.has_key?(i.slot11)
+          total_subject[i.slot11] = total_subject[i.slot11] + 1
+        elsif i.slot11.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot11] = 1
+          first_subject_slot[i.slot11] = 11
+        end
+          
+        if total_subject.has_key?(i.slot12)
+          total_subject[i.slot12] = total_subject[i.slot12] + 1
+        elsif i.slot12.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot12] = 1
+          first_subject_slot[i.slot12] = 12
+        end
+        
+        if total_subject.has_key?(i.slot13)
+          total_subject[i.slot13] = total_subject[i.slot13] + 1
+        elsif i.slot13.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot13] = 1
+          first_subject_slot[i.slot13] = 13
+        end
+        
+        if total_subject.has_key?(i.slot14)
+          total_subject[i.slot14] = total_subject[i.slot14] + 1
+        elsif i.slot14.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot14] = 1
+          first_subject_slot[i.slot14] = 14
+        end
+        
+        if total_subject.has_key?(i.slot15)
+          total_subject[i.slot15] = total_subject[i.slot15] + 1
+        elsif i.slot15.nil?
+          total_subject[nil_count] = "Free"
+          nil_count += 1
+        else
+          total_subject[i.slot15] = 1
+          first_subject_slot[i.slot15] = 15
+        end
+        
+        
+      %>
+      <% index_count = 0 %>
+      <% total_subject.each do |s| %>
+      <% if total_subject.values[index_count] == "Free" %>
+        <td class="col tg-031e" colspan="<%= 1 %>" style="background-color:#FFE0EC;">
+          <%= total_subject.values[index_count] %>
+        </td>
+      <% else %>
+        <td class="col tg-031e" colspan="<%= total_subject.values[index_count] %>" style="background-color:#CBE832;">
+          <%= link_to "#{total_subject.keys[index_count]}", edit_mid_form_path(:subjectname => total_subject.keys[index_count],:firstslot => first_subject_slot[total_subject.keys[index_count]] ) %>
+        </td>
+      <% end %>
+      <% index_count += 1 %>
+      <% end %>
+        
+
+      </tr>
+
+
+  <% end%>
+  <% else %>
+      <%= "The amount of date is not enough"  %>
+  <% end %>
+      </table>
+    </div>
+
+
+        <br><br><button onclick="window.location.href='index.html'" class='btn btn-info'>Back</button>
+    </body>
+</html>

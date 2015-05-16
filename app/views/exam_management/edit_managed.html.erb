@@ -1,0 +1,129 @@
+<html>
+    <body>
+        <p class="bg-primary">EXAM MANAGEMENT</p>
+        <div class="page-header">
+        <h3>Edit Managed Room</h3>
+    <% 
+        count = 0 
+        x = 1
+        y = 1
+        a = Hash.new
+        a[[x,y]] = 5
+        b = Array.new
+    
+    %>
+
+    <% @subjects.each do|j| %>
+        <% b[count] = j.s_name %>
+        <% count = count + 1 %>
+    <% end%>
+
+    <% count = 0 %>
+    <% @manage.each do|i| %>
+        <% count = count + 1 %>
+        <% a[[x,y]] = i.slot1 %><% y = y + 1 %>
+        <% a[[x,y]] = i.slot2 %><% y = y + 1 %>
+        <% a[[x,y]] = i.slot3 %><% y = y + 1 %>
+        <% a[[x,y]] = i.slot4 %><% y = y + 1 %>
+        <% a[[x,y]] = i.slot5 %><% y = y + 1 %>
+        <% a[[x,y]] = i.slot6 %><% y = y + 1 %>
+        <% a[[x,y]] = i.slot7 %><% y = y + 1 %>
+        <% a[[x,y]] = i.slot8 %><% y = y + 1 %>
+        <% a[[x,y]] = i.slot9 %><% y = y + 1 %>
+        <% a[[x,y]] = i.slot10 %><% y = y + 1 %>
+        <% a[[x,y]] = i.slot11 %><% y = y + 1 %>
+        <% a[[x,y]] = i.slot12 %><% y = y + 1 %>
+        <% a[[x,y]] = i.slot13 %><% y = y + 1 %>
+        <% a[[x,y]] = i.slot14 %><% y = y + 1 %>
+        <% a[[x,y]] = i.slot15 %><% y = 1 %><% x = x + 1 %>
+    <% end %>
+    <%= form_for @manage , url: edit_manage_room_path(:manage => @manage) do |f| %>
+        <% @manage.each do|i| %>
+            Room:<%= i.room_no %>&nbsp&nbsp&nbspDate Exam:<%= i.date %>
+            <br>&nbsp&nbsp&nbsp Time:  09.00-11.00 &nbsp&nbsp&nbsp Subject:
+            <%= select_tag(:t1,options_for_select([
+
+                [b[0], 'xxx'] ,[b[1],'xxx'],[b[2], 'xxx'] ,[b[3],'xxx'],
+                [b[4], 'xxx'] ,[b[5],'xxx'],[b[6], 'xxx'] ,[b[7],'xxx'],
+                [b[8], 'xxx']]))
+            %>
+            <br>&nbsp&nbsp&nbsp Time:  11.00-13.00 &nbsp&nbsp&nbsp Subject:
+            <%= select_tag(:t2,options_for_select([
+
+                [b[0], 'xxx'] ,[b[1],'xxx'],[b[2], 'xxx'] ,[b[3],'xxx'],
+                [b[4], 'xxx'] ,[b[5],'xxx'],[b[6], 'xxx'] ,[b[7],'xxx'],
+                [b[8], 'xxx']]))
+            %>
+            <br>&nbsp&nbsp&nbsp Time:  13.00-15.00 &nbsp&nbsp&nbsp Subject:
+            <%= select_tag(:t3,options_for_select([
+                
+                [b[0], 'xxx'] ,[b[1],'xxx'],[b[2], 'xxx'] ,[b[3],'xxx'],
+                [b[4], 'xxx'] ,[b[5],'xxx'],[b[6], 'xxx'] ,[b[7],'xxx'],
+                [b[8], 'xxx']]))
+            %>
+            <br>&nbsp&nbsp&nbsp Time:  15.00-16.30 &nbsp&nbsp&nbsp Subject:
+            <%= select_tag(:t4,options_for_select([
+                
+                [b[0], 'xxx'] ,[b[1],'xxx'],[b[2], 'xxx'] ,[b[3],'xxx'],
+                [b[4], 'xxx'] ,[b[5],'xxx'],[b[6], 'xxx'] ,[b[7],'xxx'],
+                [b[8], 'xxx']]))
+                
+            %>
+<br>
+            
+            
+            <% 
+            #[a[[1,1]], 'xxx'] ,[a[[1,9]],'xxx'],[a[[3,1]], 'xxx'] ,[a[[3,9]],'xxx'],
+                #[a[[2,1]], 'xxx'] ,[a[[2,9]],'xxx'],[a[[4,1]], 'xxx'] ,[a[[4,9]],'xxx'],
+                #[a[[5,1]], 'xxx'] ,[a[[5,9]],'xxx'],[a[[6,1]], 'xxx'] ,[a[[6,9]],'xxx'],
+                #[a[[7,1]], 'xxx'] ,[a[[7,9]],'xxx'],[a[[8,1]], 'xxx'] ,[a[[8,9]],'xxx'],
+                #[a[[9,1]], 'xxx'] ,[a[[9,9]],'xxx'],[a[[10,1]], 'xxx'] ,[a[[10,9]],'xxx'],
+                #[a[[11,1]], 'xxx'] ,[a[[11,9]],'xxx'],[a[[12,1]], 'xxx'] ,[a[[12,9]],'xxx'],
+                #[a[[13,1]], 'xxx'] ,[a[[13,9]],'xxx'],[a[[14,1]], 'xxx'] ,[a[[14,9]],'xxx'],
+                #[a[[15,1]], 'xxx'] ,[a[[15,9]],'xxx'],[a[[1,5]], 'xxx'] ,[a[[1,13]],'xxx'],
+                #[a[[2,5]], 'xxx'] ,[a[[2,13]],'xxx'],[a[[3,5]], 'xxx'] ,[a[[3,13]],'xxx'],
+                #[a[[4,5]], 'xxx'] ,[a[[4,13]],'xxx'],[a[[5,5]], 'xxx'] ,[a[[5,13]],'xxx'],
+                #[a[[6,5]], 'xxx'] ,[a[[6,13]],'xxx'],[a[[7,5]], 'xxx'] ,[a[[7,13]],'xxx'],
+                #[a[[8,5]], 'xxx'] ,[a[[8,13]],'xxx'],[a[[9,5]], 'xxx'] ,[a[[9,13]],'xxx'],
+                #[a[[10,5]], 'xxx'] ,[a[[10,13]],'xxx'],[a[[11,5]], 'xxx'] ,[a[[11,13]],'xxx'],
+                #[a[[12,5]], 'xxx'] ,[a[[12,13]],'xxx'],[a[[13,5]], 'xxx'] ,[a[[13,13]],'xxx'],
+                #[a[[14,5]], 'xxx'] ,[a[[14,13]],'xxx'],[a[[15,5]], 'xxx'] ,[a[[15,13]],'xxx']])) 
+            
+            #select_tag(:r1,options_for_select([
+                #['09.00-11.00', 'xxx'] ,['11.00-13.00','xxx'],['13.00-15.00', 'xxx'] ,['15.00-16.30','xxx']]))
+            %>
+            <br>
+        <% end %> 
+            
+    <% end %>    
+        
+        
+        
+        
+        
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><button type="button" class="btn btn-info" onclick="history.go(-1);">Back</button>

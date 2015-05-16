@@ -2,7 +2,8 @@ TermProject::Application.routes.draw do
   root to: 'exam_management#index'
   get "exam_management/index"
   get 'exam_management/about', :to => 'exam_management#about' , :as => 'about'
-  get 'exam_management/show_managed_rooms', :to => 'exam_management#show_managed_rooms', :as => 'show_managed_rooms'
+  get 'exam_management/show_managed_rooms_m', :to => 'exam_management#show_managed_rooms_m', :as => 'show_managed_rooms_m'
+  get 'exam_management/show_managed_rooms_f', :to => 'exam_management#show_managed_rooms_f', :as => 'show_managed_rooms_f'
   get 'exam_management/show_all_subjects', :to => 'exam_management#show_all_subjects' , :as => 'show_all_subjects'
   get 'exam_management/show_all_locations', :to => 'exam_management#show_all_locations' , :as => 'show_all_locations'
   
@@ -29,6 +30,13 @@ TermProject::Application.routes.draw do
   
   get 'exam_management/manage_room', :to => 'exam_management#manage_room', :as => 'manage_room'
   get 'exam_management/generate_schedule_form', :to => 'exam_management#generate_schedule_form' , :as => 'generate_schedule_form'
+  
+  get 'exam_management/edit_managed', :to => 'exam_management#edit_managed' , :as => 'edit_managed'
+
+  get 'exam_management/edit_mid_form', :to => 'exam_management#edit_mid_form' , :as => 'edit_mid_form'
+  get 'exam_management/edit_final_form', :to => 'exam_management#edit_final_form' , :as => 'edit_final_form'
+  post 'exam_management/edit_timing_block_mid', :to => 'exam_management#edit_timing_block_mid' , :as => 'edit_timing_block_mid'
+  post 'exam_management/edit_timing_block_final', :to => 'exam_management#edit_timing_block_final' , :as => 'edit_timing_final'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

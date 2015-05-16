@@ -66,17 +66,26 @@ class ExamManagementController < ApplicationController
       #################################################################################
       #           first create time slot for each subject in manage model             #
       #################################################################################
-      
-      Manage.delete_all
-      #Manage.where(:exam_type => "#{type}").destroy_all
-      # Manage.delete_by(exam_type: "#{type}")
-      #Manage.where(exam_type: type).delete_all
-      
-      interval.each do |i|
-        all_location.each do |l|
-          Manage.create(room_no:"#{l.room_no}",date:"#{i}")  
+      if type == 'midterm'
+        Manage.delete_all
+        
+        interval.each do |i|
+          all_location.each do |l|
+            Manage.create(room_no:"#{l.room_no}",date:"#{i}")  
+          end
         end
+        
+      else
+        ManagesFinal.delete_all
+        
+        interval.each do |i|
+          all_location.each do |l|
+            ManagesFinal.create(room_no:"#{l.room_no}",date:"#{i}")  
+          end
+        end
+        
       end
+      
       
       #################################################################################
       #           add subject to manage slot                                         #
@@ -85,6 +94,7 @@ class ExamManagementController < ApplicationController
       last_room = Location.last
       find_new_time_slot = false
       Manage.full = false
+      ManagesFinal.full = false
       
       all_subject.each do |s|
         if type == 'midterm'
@@ -92,13 +102,9 @@ class ExamManagementController < ApplicationController
         else
           temp = 6
         end
-        # temp = s.duration.to_i * 2
-        # fraction = (s.duration.to_f * 10) % 10
-        # if fraction == 3.0
-        #   temp += 1
-        # end
-        
+
         manage = Manage.all
+        manageFinal = ManagesFinal.all
         
         #if there is available time slot
         if temp == 4
@@ -152,7 +158,6 @@ class ExamManagementController < ApplicationController
             else #find new time slot
             
               manage.each do |m|
-                
                 #if time slot is full
                 if ( (m.date === endd)  && ( m.room_no == last_room.room_no))
                  Manage.full = true
@@ -170,32 +175,30 @@ class ExamManagementController < ApplicationController
                   man.save!
                   temp -= 4
                 end
+                
                 if temp == 0
                   break
                 end
-                
-                
+        
               end #find new time slot (11-13)
-              
             end #unless find new time slot
-            
           #if full
           else
             break
           end #unless full
         
         else #final exam
-          unless Manage.full
-            manage.each do |m|
+          unless ManagesFinal.full
+            manageFinal.each do |m|
               #if time slot is full
               if ( (m.date === endd)  && ( m.room_no == last_room.room_no))
-               Manage.full = true
+               ManagesFinal.full = true
               end
               
               #at the morning 
               #if 9:00 - 12:00 is available
               if m.slot1.nil?  && temp > 0
-                man = Manage.find(m.id)
+                man = ManagesFinal.find(m.id)
                 man.assign_attributes({ :slot1 => "#{s.s_name}",
                   :slot2 => "#{s.s_name}",
                   :slot3 => "#{s.s_name}",
@@ -214,7 +217,7 @@ class ExamManagementController < ApplicationController
               #at the afternoon 
               #if 13:30 - 16:30 is available
               if m.slot10.nil? && temp > 0
-                man = Manage.find(m.id)
+                man = ManagesFinal.find(m.id)
                 man.assign_attributes({ :slot10 => "#{s.s_name}",
                   :slot11 => "#{s.s_name}",
                   :slot12 => "#{s.s_name}",
@@ -230,25 +233,213 @@ class ExamManagementController < ApplicationController
                 break
               end
              
-              # if ( (m.date === endd)  && ( m.room_no == last_room.room_no))
-              #   Manage.full = true
-              # end
-              
             end #manage.each
           else
             break
           end #unless full  
         end
-        
       end #all_subject.each
       
-      redirect_to show_managed_rooms_path
+      if type == 'midterm'
+        redirect_to show_managed_rooms_m_path
+      else
+        redirect_to show_managed_rooms_f_path
+      end
+      
+    end
+  end
+  
+  ###############################################################################################
+  ###############################################################################################
+  ####################################   edit managed room   ####################################
+  ###############################################################################################
+  ###############################################################################################
+  
+  def edit_mid_form 
+    @manage_edit = Manage.all
+    unless (params[:subjectname].nil?) && (params[:firstslot].nil?)
+      @current_subject = params[:subjectname]
+      @begin_slot = params[:firstslot]
+      
+      cookies[:currentsubject] = params[:subjectname]
+      cookies[:beginslot] = params[:firstslot]
+    else
+      @current_subject =  cookies[:currentsubject]
+      @begin_slot = cookies[:beginslot]
+    end
+    
+  end
+  
+  def edit_final_form
+    unless (params[:subjectnamef].nil?) && (params[:firstslotf].nil?)
+      @current_subject_f = params[:subjectnamef]
+      @begin_slot_f = params[:firstslotf]
+      
+      cookies[:currentsubject] = params[:subjectnamef]
+      cookies[:beginslot] = params[:firstslotf]
+    else
+      @current_subject_f =  cookies[:currentsubject]
+      @begin_slot_f = cookies[:beginslot]
+    end
+  end
+  
+
+  
+  ###############################################################################################
+  ###############################  edit timing block of managed room   ##########################
+  ###############################################################################################
+  
+  def edit_timing_block_mid
+    
+
+    id = params[:select_date_room]
+    
+    start_block = params[:select_slot]
+    start_block = start_block.to_i
+    subject = cookies[:currentsubject]
+    
+    #original slot
+    slot = cookies[:beginslot]
+    slot = slot.to_i
+    
+    #find a row in which the target subject reside 
+    current = Manage.where("slot#{slot} = ?","#{subject}").first
+    i = 0
+    
+    #if user wants to edit schedule at the same day
+    if current.id.to_i == id.to_i
+      #delete subject out of time slot of that day
+      while i<4
+        current.assign_attributes "slot#{slot+i}" => nil
+        i += 1
+      end
+      
+      #if the block is not available then restore the current's value and warn user
+      unless eval "current.slot#{start_block}.nil? && current.slot#{start_block+3}.nil?"
+        i = 0
+        while i<4
+          current.assign_attributes "slot#{slot+i}" => subject
+          i += 1
+        end
+        current.save!
+        flash[:warning] = "the peroid you selected is not available"
+        render :edit_mid_form
+      #if the block is available
+      else
+        i = 0
+        while i<4
+          current.assign_attributes "slot#{start_block+i}" => subject
+          i += 1
+        end
+        current.save!
+        redirect_to show_managed_rooms_m_path
+      end
+    
+    #user wants to move subject to the other day
+    else
+      target = Manage.find(id)
+      #if the block on date and time which user selected are available 
+      if eval "target.slot#{start_block}.nil? && target.slot#{start_block+3}.nil?"
+        #delete subject out of time slot of that day
+        while i<4
+          current.assign_attributes "slot#{slot+i}" => nil
+          target.assign_attributes "slot#{slot+i}" => subject
+          i += 1
+        end
+        current.save!
+        target.save!
+        redirect_to show_managed_rooms_m_path
+      else
+        flash[:warning] = "the peroid you selected is not available"
+        render :edit_mid_form
+      end
+    end
+  end
+  
+
+  def edit_timing_block_final
+    
+    id = params[:select_date_room]
+    start_block = params[:select_slot]
+    start_block = start_block.to_i
+    subject = cookies[:currentsubject]
+    
+    #original slot
+    slot = cookies[:beginslot]
+    slot = slot.to_i
+    
+    #find a row in which the target subject reside 
+    current = ManagesFinal.where("slot#{slot} = ?","#{subject}").first
+    i = 0
+    
+    #if user wants to edit schedule at the same day
+    if current.id.to_i == id.to_i
+      #delete subject out of time slot of that day
+      while i<6
+        current.assign_attributes "slot#{slot+i}" => nil
+        i += 1
+      end
+      
+      #if the block is not available then restore the current's value and warn user
+      unless eval "current.slot#{start_block}.nil? && current.slot#{start_block+5}.nil?"
+        i = 0
+        while i<6
+          current.assign_attributes "slot#{slot+i}" => subject
+          i += 1
+        end
+        current.save!
+        flash[:warning] = "the peroid you selected is not available"
+        render :edit_final_form
+      #if the block is available
+      else
+        i = 0
+        while i<6
+          current.assign_attributes "slot#{start_block+i}" => subject
+          i += 1
+        end
+        current.save!
+        redirect_to show_managed_rooms_f_path
+      end
+    
+    #user wants to move subject to the other day
+    else
+      target = ManagesFinal.find(id)
+      #if the block on date and time which user selected are available 
+      if eval "target.slot#{start_block}.nil? && target.slot#{start_block+5}.nil?"
+        #delete subject out of time slot of that day
+        while i<6
+          current.assign_attributes "slot#{slot+i}" => nil
+          target.assign_attributes "slot#{slot+i}" => subject
+          i += 1
+        end
+        current.save!
+        target.save!
+        redirect_to show_managed_rooms_f_path
+      else
+        flash[:warning] = "the peroid you selected is not available"
+        render :edit_final_form
+      end
     end
   end
   
   
-  def show_managed_rooms
+  
+  ###############################################################################################
+  ####################################       show managed room         ##########################
+  ###############################################################################################
+
+  def show_managed_rooms_m
      @manage = Manage.all
+  end
+  
+  def show_managed_rooms_f
+     @managef = ManagesFinal.all
+  end
+  
+  def edit_managed
+    @manage = Manage.all
+    @subjects = Subject.all
+    @locations = Location.all
   end
   
   def show_all_subjects
