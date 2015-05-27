@@ -5,13 +5,13 @@ Feature: Show all details(subject)
   
 Scenario: Show subject details
   Given the following subjects exist:
-  | s_id  |     s_name        | section | duration      |   
-  | cn202 | Data structure 1  | 680002  | 2 |   
+  | s_id  |     s_name        | section | 
+  | cn202 | Data structure 1  | 680002  |  
   And  I am on the home page
   Given I follow "Go to show all subjects"
   Then I follow "Details"
   And I should see "Subject: Data structure 1"
   And I should see "ID: cn202"
   And I should see "Section: 680002"
-  And I should see "2"
+
   

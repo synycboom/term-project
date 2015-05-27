@@ -3,15 +3,21 @@
     </head>
     <body>
         <p class="bg-primary">EXAM MANAGEMENT</p>
+        <div align='center'>
         <div class="page-header">
                 <h3>Room: <%= @room.room_no %></h3>
         </div>
-        <ul>
-            <li>Building: <%= @room.building %></li>
-            <li>Total_table: <%= @room.total_table %></li>
-        </ul>
-        <%= link_to 'Edit', edit_location_path(:ulocation => @room) %>&nbsp&nbsp
-        <%= link_to 'Delete', destroy_l_path(:dlocation => @room), :confirm => 'Are you sure?' %><br><br><br>
+        
+        <table class="table table-bordered">
+            <tbody align='center'>
+                <tr><td>Building: <%= @room.building %></td></tr>
+                <tr><td>Total_table: <%= @room.total_table %></td></tr>
+                <tr><td>
+                    <%= link_to 'Edit', edit_location_path(:ulocation => @room) %>&nbsp&nbsp
+                    <%= link_to 'Delete', destroy_l_path(:dlocation => @room), :confirm => 'Are you sure?' %>
+                </td></tr>
+            </tbody>
+        </table>
         <button onclick="window.location.href='show_all_locations.html'" class='btn btn-info'>Back</button>
-    </body>
+    </div></body>
 </html>

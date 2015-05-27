@@ -185,15 +185,12 @@ class ExamManagementController < ApplicationController
           #if full
           else
             break
-          end #unless full
+        end #unless full
         
         else #final exam
           unless ManagesFinal.full
             manageFinal.each do |m|
-              #if time slot is full
-              if ( (m.date === endd)  && ( m.room_no == last_room.room_no))
-               ManagesFinal.full = true
-              end
+              
               
               #at the morning 
               #if 9:00 - 12:00 is available
@@ -231,6 +228,11 @@ class ExamManagementController < ApplicationController
               end
               if temp == 0
                 break
+              end
+              
+              #if time slot is full
+              if ( (m.date === endd)  && ( m.room_no == last_room.room_no))
+               ManagesFinal.full = true
               end
              
             end #manage.each
@@ -337,13 +339,17 @@ class ExamManagementController < ApplicationController
     
     #user wants to move subject to the other day
     else
+      i = 0
       target = Manage.find(id)
       #if the block on date and time which user selected are available 
       if eval "target.slot#{start_block}.nil? && target.slot#{start_block+3}.nil?"
         #delete subject out of time slot of that day
         while i<4
-          current.assign_attributes "slot#{slot+i}" => nil
-          target.assign_attributes "slot#{slot+i}" => subject
+           current.assign_attributes "slot#{slot+i}" => nil
+           target.assign_attributes "slot#{start_block+i}" => subject
+          #x = slot+i
+          #eval "current.slot#{slot+i}=nil" 
+          #eval "target.slot#{x}=#{subject}" 
           i += 1
         end
         current.save!
@@ -409,7 +415,7 @@ class ExamManagementController < ApplicationController
         #delete subject out of time slot of that day
         while i<6
           current.assign_attributes "slot#{slot+i}" => nil
-          target.assign_attributes "slot#{slot+i}" => subject
+          target.assign_attributes "slot#{start_block+i}" => subject
           i += 1
         end
         current.save!
@@ -430,16 +436,11 @@ class ExamManagementController < ApplicationController
 
   def show_managed_rooms_m
      @manage = Manage.all
+     @test = Manage.where("room_no = ? AND date = ?","318","2015-05-16");
   end
   
   def show_managed_rooms_f
      @managef = ManagesFinal.all
-  end
-  
-  def edit_managed
-    @manage = Manage.all
-    @subjects = Subject.all
-    @locations = Location.all
   end
   
   def show_all_subjects

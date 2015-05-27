@@ -3,15 +3,21 @@
     </head>
     <body>
         <p class="bg-primary">EXAM MANAGEMENT</p>
+        <div align='center'>
         <div class="page-header">
                 <h3>Subject: <%= @subject.s_name %></h3>
         </div>
-        <ul>
-            <li>ID: <%= @subject.s_id %></li>
-            <li>Section: <%= @subject.section %></li>
-        </ul>
-        <%= link_to 'Edit', edit_subject_path(:usub => @subject) %>&nbsp&nbsp
-        <%= link_to 'Delete', destroy_s_path(:dsub => @subject), :confirm => 'Are you sure?' %><br><br><br>
-        <button onclick="window.location.href='show_all_subjects.html'" class='btn btn-info'>Back</button>
-    </body>
+        <table class="table table-bordered">
+            <tbody align='center'>
+                <tr><td>ID: <%= @subject.s_id %></td></tr>
+                <tr><td>Section: <%= @subject.section %></td></tr>    
+                <tr><td>
+                    <%= link_to 'Edit', edit_subject_path(:usub => @subject) %>&nbsp&nbsp
+                    <%= link_to 'Delete', destroy_s_path(:dsub => @subject), :confirm => 'Are you sure?' %>
+                </td></tr>
+                </tbody>
+        </table>
+        
+<button onclick="window.location.href='show_all_subjects.html'" class='btn btn-info'>Back</button>
+    </div></body>
 </html>

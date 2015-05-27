@@ -5,10 +5,10 @@ Feature: Show search result(subject)
   
 Scenario: Show search result subject
    Given the following subjects exist:
-  | s_id  |     s_name        | section | duration      | 
-  | cn202 | Data structure 1  | 680002  | 2| 
-  | cn201 | OOP               | 570001  | 2| 
-  | cn418 | Web Application Security  | 340001  | 2 |
+  | s_id  |     s_name        | section | 
+  | cn202 | Data structure 1  | 680002  | 
+  | cn201 | OOP               | 570001  | 
+  | cn418 | Web Application Security  | 340001  | 
   
   And  I am on the home page
   Given I follow "Go to show all subjects"
@@ -18,14 +18,14 @@ Scenario: Show search result subject
   And I should see "Data structure 1"
   And I should see "cn202"
   And I should see "680002"
-  And I should see "2"
+
   
 Scenario: Show search result subject(sad path)
   Given the following subjects exist:
-  | s_id  |     s_name        | section | duration      |  
-  | cn202 | Data structure 1  | 680002  | 2|   
-  | cn201 | OOP               | 570001  | 2|  
-  | cn418 | Web Application Security  | 340001  | 2 | 
+  | s_id  |     s_name        | section | 
+  | cn202 | Data structure 1  | 680002  | 
+  | cn201 | OOP               | 570001  | 
+  | cn418 | Web Application Security  | 340001  | 
   
   And  I am on the home page
   Then I follow "Go to show all subjects"

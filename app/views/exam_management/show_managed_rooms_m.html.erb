@@ -28,7 +28,6 @@
             <%= link_to 'Go to generate', generate_schedule_form_path %></button>
 <br>           
 
-
 <% unless Manage.full %>
 <div class="container-fluid" >
   <table class="tg">
@@ -225,23 +224,27 @@
         
         
       %>
-      <% index_count = 0 %>
+      <% index_count = 0; colors_count = 0 %>
+      <% colors = Array.new %>
+      <% colors[0] = "#81F781"; colors[1] = "#A9D0F5"; colors[2] = "#F3F781"; colors[3] = "#F7819F"; colors[4] = "#BCA9F5"  %>
       <% total_subject.each do |s| %>
-      <% if total_subject.values[index_count] == "Free" %>
-        <td class="col tg-031e" colspan="<%= 1 %>" style="background-color:#FFE0EC;">
-          <%= total_subject.values[index_count] %>
-        </td>
-      <% else %>
-        <td class="col tg-031e" colspan="<%= total_subject.values[index_count] %>" style="background-color:#CBE832;">
-          <%= link_to "#{total_subject.keys[index_count]}", edit_mid_form_path(:subjectname => total_subject.keys[index_count],:firstslot => first_subject_slot[total_subject.keys[index_count]] ) %>
-        </td>
-      <% end %>
-      <% index_count += 1 %>
+        <% if total_subject.values[index_count] == "Free" %>
+          <td class="col tg-031e" colspan="<%= 1 %>" style="background-color:#F2F2F2;">
+            <%= total_subject.values[index_count] %>
+          </td>
+        <% else %>
+          <td class="col tg-031e" colspan="<%= total_subject.values[index_count] %>" style="background-color:<%= colors[colors_count] %>;">
+            <%= link_to "#{total_subject.keys[index_count]}", edit_mid_form_path(:subjectname => total_subject.keys[index_count],:firstslot => first_subject_slot[total_subject.keys[index_count]] ) %>
+          </td>
+          <% colors_count += 1 %>
+          <% colors_count = 0 if colors_count == 5 %>
+        <% end %>
+        <% index_count += 1 %>
       <% end %>
         
 
       </tr>
-
+      
 
   <% end%>
   <% else %>
@@ -249,6 +252,7 @@
   <% end %>
       </table>
     </div>
+    
 
 
         <br><br><button onclick="window.location.href='index.html'" class='btn btn-info'>Back</button>

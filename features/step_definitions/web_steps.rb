@@ -252,3 +252,41 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
+
+
+Then(/^I should see table with room no "([^"]*)" date time "([^"]*)" with subject "([^"]*)"$/) do |arg1, arg2, arg3|
+  pre_reg = '.*?'
+  subject = arg3.split('-')
+  check_room_date = false
+  check_subject = false
+  string_pattern = 'Room:' + pre_reg + arg1 + pre_reg + arg2
+  
+  if((/#{string_pattern}/m =~ page.body) > 0)
+    check_room_date = true
+  end
+  
+  subject.each do |s|
+    string_pattern = string_pattern + pre_reg + s
+    if((/#{string_pattern}/m =~ page.body) > 0 )
+      check_subject = true
+    else
+      check_subject = false
+      break
+    end
+  end
+  check_subject.should == true
+end
+
+
+
+Then(/^I should see table with room no "([^"]*)" date time "([^"]*)"$/) do |arg1, arg2|
+  pre_reg = '.*?'
+  check_room_date = false
+  string_pattern = 'Room:' + pre_reg + arg1 + pre_reg + arg2
+  
+  if((/#{string_pattern}/m =~ page.body) > 0)
+    check_room_date = true
+  end
+  
+  check_room_date.should == true
+end

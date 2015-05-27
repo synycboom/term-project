@@ -6,13 +6,14 @@
         <div class="page-header">
         <h3>Show All Subjects</h3>
         </div>
-        
+
         <%= form_tag("show_search_subject", method: "get",class: 'form-inline') do %>
               <%= label_tag(:q, "Search for:") %>
               <%= text_field_tag 'search_value',nil,class: 'form-control' %>
               <%= select_tag(:search_by,options_for_select([['Subject ID', 's_id'], ['Subject Name', 's_name'] ,['Section','section'],['Exam duration','duration']]), { :class => 'form-control' }) %>
               <%= submit_tag "Search",class: 'btn btn-danger' %>
         <% end %>
+
         <br>
         
         <% if flash[:notice] %>
@@ -44,12 +45,13 @@
                 <% end %>
             </tbody>
         </table>
+        <div align='center'>
         <button type="button" class="btn btn-default btn-lg">
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
           <%= link_to 'add new subject', add_subject_form_path %>
         </button>
         <br><br>
         <button onclick="window.location.href='index.html'" class='btn btn-info'>Back</button>
-        <br><br>
+        </div><br><br>
     </body>
 </html>
