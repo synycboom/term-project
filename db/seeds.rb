@@ -8,8 +8,8 @@
 locations = [{:room_no => '418', :building => 'Engineering', :total_table => '35'},
     	  {:room_no => '315', :building => 'Engineering', :total_table => '40'},
     	  {:room_no => '318', :building => 'Engineering', :total_table => '25'},
-      	  {:room_no => '507', :building => 'Engineering', :total_table => '45'},
-      	  {:room_no => '609', :building => 'Engineering', :total_table => '30'},
+      	{:room_no => '507', :building => 'Engineering', :total_table => '45'},
+      	{:room_no => '609', :building => 'Engineering', :total_table => '30'},
   	 ]
 
 locations.each do |location|
