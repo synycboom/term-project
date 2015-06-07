@@ -122,8 +122,7 @@ class ExamManagementController < ApplicationController
                   man.assign_attributes({ :slot1 => "#{s.s_name}",
                   :slot2 => "#{s.s_name}",
                   :slot3 => "#{s.s_name}",
-                  :slot4 => "#{s.s_name}",
-                  :exam_type => "#{type}"})
+                  :slot4 => "#{s.s_name}"})
                   man.save!
                   temp -= 4
                 end
@@ -142,8 +141,7 @@ class ExamManagementController < ApplicationController
                   man.assign_attributes({ :slot9 => "#{s.s_name}",
                     :slot10 => "#{s.s_name}",
                     :slot11 => "#{s.s_name}",
-                    :slot12 => "#{s.s_name}",
-                    :exam_type => "#{type}"
+                    :slot12 => "#{s.s_name}"
                   })
                   man.save!
                   temp -= 4
@@ -169,8 +167,7 @@ class ExamManagementController < ApplicationController
                   man.assign_attributes({ :slot5 => "#{s.s_name}",
                     :slot6 => "#{s.s_name}",
                     :slot7 => "#{s.s_name}",
-                    :slot8 => "#{s.s_name}",
-                    :exam_type => "#{type}"
+                    :slot8 => "#{s.s_name}"
                   })
                   man.save!
                   temp -= 4
@@ -201,8 +198,7 @@ class ExamManagementController < ApplicationController
                   :slot3 => "#{s.s_name}",
                   :slot4 => "#{s.s_name}",
                   :slot5 => "#{s.s_name}",
-                  :slot6 => "#{s.s_name}",
-                  :exam_type => "#{type}"
+                  :slot6 => "#{s.s_name}"
                 })
                 man.save!
                 temp -= 6
@@ -220,8 +216,7 @@ class ExamManagementController < ApplicationController
                   :slot12 => "#{s.s_name}",
                   :slot13 => "#{s.s_name}",
                   :slot14 => "#{s.s_name}",
-                  :slot15 => "#{s.s_name}",
-                  :exam_type => "#{type}"
+                  :slot15 => "#{s.s_name}"
                 })
                 man.save!
                 temp -= 6

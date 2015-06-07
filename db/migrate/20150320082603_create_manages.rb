@@ -18,7 +18,6 @@ class CreateManages < ActiveRecord::Migration
       t.string :slot13  #15:00-15:30
       t.string :slot14  #15:30-16:00
       t.string :slot15  #16:00-16:30
-      t.string :exam_type #determine whether midterm or final 
       t.timestamps
     end
   end
