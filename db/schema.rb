@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(:version => 20150516164750) do
     t.string   "slot13"
     t.string   "slot14"
     t.string   "slot15"
-    t.string   "exam_type"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -62,7 +61,6 @@ ActiveRecord::Schema.define(:version => 20150516164750) do
     t.string   "slot13"
     t.string   "slot14"
     t.string   "slot15"
-    t.string   "exam_type"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
